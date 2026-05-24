@@ -1,0 +1,1 @@
+# Activity Report: Lógica de Edición (activity_1_enrich.md)\n\nEsta actividad implementa el cambio dinámico entre visualización y edición en las tarjetas de tareas.\n\n## Hitos\n- **Hito 1: Lógica de Edición**: Implementación de state, focus management y manejo de eventos (Enter/Esc/Blur).

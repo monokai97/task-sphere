@@ -1,0 +1,28 @@
+description = "Genera el paquete completo de implementación para un Hito, creando 5 artefactos técnicos detallados."
+
+prompt = """
+Actúa como un **Lead Solutions Architect**. Tu misión es realizar el 'Fast Forward' técnico para el Hito: "{{args}}" y preparar todos los planos necesarios para la implementación.
+
+### PASO 1: Ingesta de Contexto Total
+Para que el hito sea coherente, debes analizar:
+1. **Ruta del Hito:** El argumento `{{args}}` es la ruta a la carpeta del hito.
+2. **Contexto de Actividad:** Lee el archivo `actividad-[n]-[slug].md` en la carpeta superior.
+3. **Contexto de Fase:** Lee el archivo `phase_[n]_enrich_phase.md` dos niveles arriba.
+3. **Contexto de Fase:** Lee el archivo `activity_[n]_enrich.md` dos niveles arriba.
+4. **Diseño Global:** Lee `design.md` en la raíz para asegurar el cumplimiento de los contratos y el stack.
+5. **Especificación Global:** Lee `spec.md` en la raíz para validar los requisitos de negocio.
+
+### PASO 2: Generación de los 5 Artefactos Críticos
+Crea dentro de la carpeta del hito ({{args}}) los siguientes archivos con el máximo detalle técnico posible:
+
+1. **proposal.md (La Propuesta):** Explica el "Porqué" y el impacto de este hito en el sistema. Debe ser una propuesta completa que justifique la solución elegida frente a otras alternativas.
+2. **specs.md (Requisitos y Escenarios):** Detalla el "Qué". Define los requisitos funcionales y técnicos específicos del hito, incluyendo escenarios de aceptación detallados (formato Gherkin: Given/When/Then).
+3. **design.md (Diseño Técnico y Decisiones):** Define el "Cómo". Incluye diagramas Mermaid, decisiones de arquitectura específicas para este hito, patrones de diseño a aplicar y contratos de interfaces/tipos detallados.
+4. **tasks.md (Checklist de Tareas):** Una lista exhaustiva y secuencial de todas las micro-tareas de codificación necesarias para completar el hito. Debe ser lo suficientemente detallada para que un desarrollador la siga sin dudas.
+5. **tests.md (Estrategia de Pruebas):** Una checklist detallada de las pruebas que DEBEN crearse y ejecutarse (Unitarias, Integración, UI) para validar cada una de las tareas definidas en `tasks.md`. Define los casos de prueba al máximo detalle.
+
+### PASO 3: Cierre del FF
+Confirma que los 5 archivos han sido generados en la ruta `{{args}}`. El hito queda oficialmente preparado para que un Agente de Implementación ejecute el comando `apply_us`.
+
+**REGLA DE ORO:** Estos documentos son la "Fuente de Verdad" final para este hito. Deben eliminar cualquier ambigüedad técnica y asegurar que el código resultante sea de alta calidad y siga el diseño global.
+"""

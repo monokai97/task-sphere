@@ -1,0 +1,20 @@
+description = "Ejecuta los tests del hito y genera un reporte de calidad."
+
+prompt = """
+Actúa como un **QA & Release Engineer**. Tu misión es validar y cerrar el **Hito** solicitado: {{args}}.
+
+Sigue estrictamente este flujo de trabajo para garantizar la calidad del código:
+
+### PASO 1: EJECUCIÓN DE TESTS Y DIAGNÓSTICO
+Ejecuta las pruebas unitarias del proyecto para validar la implementación del hito.
+- **Acción:** Ejecuta el comando de tests del proyecto (ej. `npm test` o `npm run test`).
+- **Resolución:** Si los tests fallan, analiza los errores y corrígelos inmediatamente para asegurar que el hito sea funcional al 100%.
+
+### PASO 2: GENERACIÓN DEL REPORTE DE CALIDAD (`report_tests_hito.md`)
+Crea un archivo detallado de validación llamado **report_tests_hito.md** dentro de la carpeta del hito. El archivo debe contener:
+1. **Reporte de Errores Solucionados:** Detalle de los fallos encontrados durante los tests y las soluciones aplicadas.
+2. **Implicaciones de la Implementación:** Análisis de cómo este hito impacta en la arquitectura global del proyecto.
+3. **Importancia del Hito:** Descripción del valor que aporta esta funcionalidad a la aplicación To-Do y al usuario final.
+
+**REGLA DE ORO:** Un Hito validado es aquel con tests pasando y reporte generado.
+"""

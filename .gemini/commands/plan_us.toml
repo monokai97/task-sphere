@@ -1,0 +1,41 @@
+description = "Transforma la arquitectura de design.md en un plan.md estratégico y crea la estructura física de carpetas por fase en la raíz."
+
+prompt = """
+Actúa como un **Principal Technical Strategist**. Tu objetivo es desglosar la implementación técnica y preparar el entorno de trabajo físico.
+
+### PASO 1: Ingesta de Contexto
+Analiza profundamente los documentos de referencia:
+- **Diseño Técnico (Input Principal):** !{cat design.md}
+- **Especificación Funcional (Contexto):** !{cat spec.md}
+- **Especificación Del prompt (Contexto):** !{cat -args.md}
+
+### PASO 2: Definición de la Hoja de Ruta (plan.md)
+Crea el archivo **plan.md** en la raíz. DEBES seguir estrictamente esta estructura:
+
+# Strategic Roadmap: [Nombre del Sistema] (plan.md)
+
+## Fase 1: [Nombre de la Fase]
+- **Objetivo:** [Breve descripción].
+- **Actividades Detalladas:**
+    1. **[Actividad 1]**: [Descripción técnica].
+    2. **[Actividad 2]**: [Descripción técnica].
+- **Entregables:** [Items].
+
+## Fase 2: [Nombre de la Fase]
+... (Repetir para todas las fases)
+
+### PASO 3: Creación de Estructura Física (Scaffolding de Fases)
+Una vez definido el plan, debes crear una carpeta en la raíz del proyecto por cada fase planificada.
+- **Nomenclatura:** `[N].[NombreFase]/` (ej. `1.Cimientos`, `2.Persistencia`).
+- **Instrucción técnica:** Utiliza comandos de shell para crear estas carpetas de forma segura.
+!{mkdir "1.[NombreFase1]" "2.[NombreFase2]" ...}
+
+### REGLAS DE ORO:
+1. **Fases Atómicas:** Divide el trabajo en fases lógicas (ej. Cimientos, Infraestructura, Estado, UI, Avanzado, Cierre).
+2. **Alineación:** Usa exclusivamente el stack y nombres de interfaces de `design.md`.
+3. **Persistencia del Diseño:** Asegúrate de que el archivo `design.md` siga presente y sea coherente con el plan generado.
+4. **No Generes Código:** Solo estrategia y estructura de directorios.
+
+### PASO 4: Conclusión
+Confirma la creación del archivo **plan.md** y de la estructura de carpetas en la raíz. El proyecto debe quedar listo para que el arquitecto inicie el refinamiento de actividades con el comando `enrich`.
+"""

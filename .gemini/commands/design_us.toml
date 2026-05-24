@@ -1,0 +1,58 @@
+description = "Transforma la intención de spec.md y *-args.md en un diseño técnico y arquitectura detallada en design.md, adaptable a cualquier stack tecnológico."
+
+prompt = """
+Actúa como un **Senior Solutions Architect**. Tu objetivo es definir las "reglas del juego" técnicas y la arquitectura detallada para el proyecto.
+
+### INMERSIÓN EN EL CONTEXTO
+Para generar este diseño, debes analizar y sintetizar la información de las siguientes fuentes de verdad:
+1. **Especificación Técnica (Input Principal) (spec.md):** !{cat spec.md}
+2. **Argumentos y Requisitos del Proyecto  (Contexto) (*-args.md):** !{cat *-args.md}
+
+
+### PASO 1: Análisis de Contexto y Definición de Stack
+Identifica el lenguaje de programación, frameworks y herramientas definidos en los requisitos. Este diseño debe ser **agnóstico al lenguaje** hasta este punto, adaptándose estrictamente a lo que el proyecto requiera (ej. React/TS, Python/FastAPI, Rust, etc.).
+
+### PASO 2: Crítica y Clarificación Estratégica
+Antes de generar el diseño, realiza una breve crítica técnica de la especificación y haz **3 a 5 preguntas clave** sobre compensaciones (trade-offs), arquitectura y seguridad para asegurar que el diseño sea robusto y alineado con el stack elegido.
+
+### PASO 3: Generación del Diseño Técnico (design.md)
+Genera el archivo **design.md** en la raíz. DEBES seguir exactamente esta estructura de secciones, adaptando los detalles técnicos al lenguaje y stack identificados:
+
+## 1. Decisiones de Arquitectura
+### A. Patrón de Flujo de Datos y Capas
+- Incluye un diagrama **Mermaid** que muestre la separación de responsabilidades (ej. UI/Presentación, Lógica de Negocio/Estado, e Infraestructura/Persistencia).
+- Justifica el uso de patrones arquitectónicos (ej. Repository Pattern, Clean Architecture, Hexagonal, etc.).
+
+### B. Sistema de Ordenamiento y Gestión de Datos
+- Explica cómo se manejará el ordenamiento dinámico (ej. Lexicographical Fractional Indexing / LexoRank) si aplica.
+- Define la lógica de persistencia y las herramientas sugeridas.
+
+### C. Concurrencia y Consistencia
+- Detalla la estrategia para el manejo de estados concurrentes y sincronización (ej. multi-pestaña, procesos paralelos).
+- Define mecanismos de bloqueo o control de acceso si son necesarios.
+
+## 2. Stack Tecnológico Definido
+- Presenta una tabla con: Tecnología, Versión y Justificación, basada estrictamente en el contexto de `*-args.md` y `spec.md`.
+
+## 3. Esquema de Datos y Contratos
+- Define los contratos de datos (ej. interfaces TypeScript, clases, schemas de validación como Zod/Pydantic, etc.).
+- Define las interfaces de los servicios o repositorios principales.
+
+## 4. Estructura de Directorios (Scalable Path)
+- Presenta el árbol de directorios sugerido siguiendo las mejores prácticas para el lenguaje y stack seleccionados.
+
+## 5. Sistema de Estilos / Configuración Técnica
+- Si es una aplicación visual, detalla el sistema de estilos.
+- Si es un backend o CLI, detalla la configuración de middleware, logs o manejo de señales.
+
+## 6. Guardias para la Implementación (Operational Guidance)
+- Establece reglas críticas para evitar errores comunes en el stack elegido:
+    - Gestión de inmutabilidad o estado.
+    - Resolución de conflictos.
+    - Sanitización y seguridad.
+    - Gestión de errores específicos del entorno (ej. Storage, Network, Memoria).
+    - Optimización de operaciones costosas.
+
+### PASO 4: Conclusión
+Enfócate en la precisión técnica. El diseño debe ser un plano ejecutable que elimine la ambigüedad para los agentes de implementación, independientemente del lenguaje de programación.
+"""
