@@ -1,8 +1,13 @@
+import { EmptyStateBento } from "@/components/vento/dashboard/EmptyStateBento";
+import { SideNavBar } from "@/components/vento/layout/SideNavBar";
+
 export default function Page() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center p-24">
-      <h1 className="text-4xl font-bold">Vento To-Do</h1>
-      <p className="mt-4 text-muted-foreground">Tu día, organizado.</p>
-    </main>
+    <div className="min-h-screen bg-vento-neutral-50 flex">
+      <SideNavBar />
+      <main className="md:ml-[288px] flex-1 flex flex-col relative">
+        <EmptyStateBento />
+      </main>
+    </div>
   );
 }

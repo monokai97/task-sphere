@@ -1,0 +1,340 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang2058{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset1 Segoe UI Symbol;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang10 ---\par
+title: Carousel\par
+description: A carousel with motion and swipe built using Embla.\par
+base: radix\par
+component: true\par
+links:\par
+  doc: {{\field{\*\fldinst{HYPERLINK https://www.embla-carousel.com/get-started/react }}{\fldrslt{https://www.embla-carousel.com/get-started/react\ul0\cf0}}}}\f0\fs22\par
+  api: {{\field{\*\fldinst{HYPERLINK https://www.embla-carousel.com/api }}{\fldrslt{https://www.embla-carousel.com/api\ul0\cf0}}}}\f0\fs22\par
+---\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="carousel-demo"\par
+  previewClassName="h-80 sm:h-[32rem]"\par
+/>\par
+\par
+## About\par
+\par
+The carousel component is built using the [Embla Carousel](https://www.embla-carousel.com/) library.\par
+\par
+## Installation\par
+\par
+<CodeTabs>\par
+\par
+<TabsList>\par
+  <TabsTrigger value="cli">Command</TabsTrigger>\par
+  <TabsTrigger value="manual">Manual</TabsTrigger>\par
+</TabsList>\par
+\par
+<TabsContent value="cli">\par
+\par
+```bash\par
+npx shadcn@latest add carousel\par
+```\par
+\par
+</TabsContent>\par
+\par
+<TabsContent value="manual">\par
+\par
+<Steps className="mb-0 pt-2">\par
+\par
+<Step>Install the following dependencies:</Step>\par
+\par
+```bash\par
+npm install embla-carousel-react\par
+```\par
+\par
+<Step>Copy and paste the following code into your project.</Step>\par
+\par
+<ComponentSource\par
+  name="carousel"\par
+  title="components/ui/carousel.tsx"\par
+  styleName="radix-nova"\par
+/>\par
+\par
+<Step>Update the import paths to match your project setup.</Step>\par
+\par
+</Steps>\par
+\par
+</TabsContent>\par
+\par
+</CodeTabs>\par
+\par
+## Usage\par
+\par
+```tsx showLineNumbers\par
+import \{\par
+  Carousel,\par
+  CarouselContent,\par
+  CarouselItem,\par
+  CarouselNext,\par
+  CarouselPrevious,\par
+\} from "@/components/ui/carousel"\par
+```\par
+\par
+```tsx showLineNumbers\par
+<Carousel>\par
+  <CarouselContent>\par
+    <CarouselItem>...</CarouselItem>\par
+    <CarouselItem>...</CarouselItem>\par
+    <CarouselItem>...</CarouselItem>\par
+  </CarouselContent>\par
+  <CarouselPrevious />\par
+  <CarouselNext />\par
+</Carousel>\par
+```\par
+\par
+## Composition\par
+\par
+Use the following composition to build a `Carousel`:\par
+\par
+```text\par
+Carousel\par
+\f1\u9500?\u9472?\u9472?\f0  CarouselContent\par
+\f1\u9474?\f0    \f1\u9500?\u9472?\u9472?\f0  CarouselItem\par
+\f1\u9474?\f0    \f1\u9492?\u9472?\u9472?\f0  CarouselItem\par
+\f1\u9500?\u9472?\u9472?\f0  CarouselPrevious\par
+\f1\u9492?\u9472?\u9472?\f0  CarouselNext\par
+```\par
+\par
+## Examples\par
+\par
+### Sizes\par
+\par
+To set the size of the items, you can use the `basis` utility class on the `<CarouselItem />`.\par
+\par
+<ComponentPreview styleName="radix-nova" name="carousel-size" />\par
+\par
+```tsx showLineNumbers \{4-6\}\par
+// 33% of the carousel width.\par
+<Carousel>\par
+  <CarouselContent>\par
+    <CarouselItem className="basis-1/3">...</CarouselItem>\par
+    <CarouselItem className="basis-1/3">...</CarouselItem>\par
+    <CarouselItem className="basis-1/3">...</CarouselItem>\par
+  </CarouselContent>\par
+</Carousel>\par
+```\par
+\par
+```tsx showLineNumbers \{4-6\}\par
+// 50% on small screens and 33% on larger screens.\par
+<Carousel>\par
+  <CarouselContent>\par
+    <CarouselItem className="md:basis-1/2 lg:basis-1/3">...</CarouselItem>\par
+    <CarouselItem className="md:basis-1/2 lg:basis-1/3">...</CarouselItem>\par
+    <CarouselItem className="md:basis-1/2 lg:basis-1/3">...</CarouselItem>\par
+  </CarouselContent>\par
+</Carousel>\par
+```\par
+\par
+### Spacing\par
+\par
+To set the spacing between the items, we use a `pl-[VALUE]` utility on the `<CarouselItem />` and a negative `-ml-[VALUE]` on the `<CarouselContent />`.\par
+\par
+<ComponentPreview styleName="radix-nova" name="carousel-spacing" />\par
+\par
+```tsx showLineNumbers /-ml-4/ /pl-4/\par
+<Carousel>\par
+  <CarouselContent className="-ml-4">\par
+    <CarouselItem className="pl-4">...</CarouselItem>\par
+    <CarouselItem className="pl-4">...</CarouselItem>\par
+    <CarouselItem className="pl-4">...</CarouselItem>\par
+  </CarouselContent>\par
+</Carousel>\par
+```\par
+\par
+```tsx showLineNumbers /-ml-2/ /pl-2/ /md:-ml-4/ /md:pl-4/\par
+<Carousel>\par
+  <CarouselContent className="-ml-2 md:-ml-4">\par
+    <CarouselItem className="pl-2 md:pl-4">...</CarouselItem>\par
+    <CarouselItem className="pl-2 md:pl-4">...</CarouselItem>\par
+    <CarouselItem className="pl-2 md:pl-4">...</CarouselItem>\par
+  </CarouselContent>\par
+</Carousel>\par
+```\par
+\par
+### Orientation\par
+\par
+Use the `orientation` prop to set the orientation of the carousel.\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="carousel-orientation"\par
+  previewClassName="h-[32rem]"\par
+/>\par
+\par
+```tsx showLineNumbers /vertical | horizontal/\par
+<Carousel orientation="vertical | horizontal">\par
+  <CarouselContent>\par
+    <CarouselItem>...</CarouselItem>\par
+    <CarouselItem>...</CarouselItem>\par
+    <CarouselItem>...</CarouselItem>\par
+  </CarouselContent>\par
+</Carousel>\par
+```\par
+\par
+## Options\par
+\par
+You can pass options to the carousel using the `opts` prop. See the [Embla Carousel docs](https://www.embla-carousel.com/api/options/) for more information.\par
+\par
+```tsx showLineNumbers \{2-5\}\par
+<Carousel\par
+  opts=\{\{\par
+    align: "start",\par
+    loop: true,\par
+  \}\}\par
+>\par
+  <CarouselContent>\par
+    <CarouselItem>...</CarouselItem>\par
+    <CarouselItem>...</CarouselItem>\par
+    <CarouselItem>...</CarouselItem>\par
+  </CarouselContent>\par
+</Carousel>\par
+```\par
+\par
+## API\par
+\par
+Use a state and the `setApi` props to get an instance of the carousel API.\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="carousel-api"\par
+  previewClassName="sm:h-[32rem]"\par
+/>\par
+\par
+```tsx showLineNumbers \{1,4,22\}\par
+import \{ type CarouselApi \} from "@/components/ui/carousel"\par
+\par
+export function Example() \{\par
+  const [api, setApi] = React.useState<CarouselApi>()\par
+  const [current, setCurrent] = React.useState(0)\par
+  const [count, setCount] = React.useState(0)\par
+\par
+  React.useEffect(() => \{\par
+    if (!api) \{\par
+      return\par
+    \}\par
+\par
+    setCount(api.scrollSnapList().length)\par
+    setCurrent(api.selectedScrollSnap() + 1)\par
+\par
+    api.on("select", () => \{\par
+      setCurrent(api.selectedScrollSnap() + 1)\par
+    \})\par
+  \}, [api])\par
+\par
+  return (\par
+    <Carousel setApi=\{setApi\}>\par
+      <CarouselContent>\par
+        <CarouselItem>...</CarouselItem>\par
+        <CarouselItem>...</CarouselItem>\par
+        <CarouselItem>...</CarouselItem>\par
+      </CarouselContent>\par
+    </Carousel>\par
+  )\par
+\}\par
+```\par
+\par
+## Events\par
+\par
+You can listen to events using the api instance from `setApi`.\par
+\par
+```tsx showLineNumbers \{1,4-14,16\}\par
+import \{ type CarouselApi \} from "@/components/ui/carousel"\par
+\par
+export function Example() \{\par
+  const [api, setApi] = React.useState<CarouselApi>()\par
+\par
+  React.useEffect(() => \{\par
+    if (!api) \{\par
+      return\par
+    \}\par
+\par
+    api.on("select", () => \{\par
+      // Do something on select.\par
+    \})\par
+  \}, [api])\par
+\par
+  return (\par
+    <Carousel setApi=\{setApi\}>\par
+      <CarouselContent>\par
+        <CarouselItem>...</CarouselItem>\par
+        <CarouselItem>...</CarouselItem>\par
+        <CarouselItem>...</CarouselItem>\par
+      </CarouselContent>\par
+    </Carousel>\par
+  )\par
+\}\par
+```\par
+\par
+See the [Embla Carousel docs](https://www.embla-carousel.com/api/events/) for more information on using events.\par
+\par
+## Plugins\par
+\par
+You can use the `plugins` prop to add plugins to the carousel.\par
+\par
+```ts showLineNumbers \{1,6-10\}\par
+import Autoplay from "embla-carousel-autoplay"\par
+\par
+export function Example() \{\par
+  return (\par
+    <Carousel\par
+      plugins=\{[\par
+        Autoplay(\{\par
+          delay: 2000,\par
+        \}),\par
+      ]\}\par
+    >\par
+      // ...\par
+    </Carousel>\par
+  )\par
+\}\par
+```\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="carousel-plugin"\par
+  previewClassName="sm:h-[32rem]"\par
+/>\par
+\par
+## RTL\par
+\par
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="carousel-rtl"\par
+  direction="rtl"\par
+  previewClassName="h-80 sm:h-[32rem]"\par
+/>\par
+\par
+When localizing the carousel for RTL languages, you need to set the `direction` option in the `opts` prop to match the text direction. This ensures the carousel scrolls in the correct direction.\par
+\par
+```tsx showLineNumbers \{2-5\}\par
+<Carousel\par
+  dir=\{dir\}\par
+  opts=\{\{\par
+    direction: dir,\par
+  \}\}\par
+>\par
+  <CarouselContent>\par
+    <CarouselItem>...</CarouselItem>\par
+    <CarouselItem>...</CarouselItem>\par
+    <CarouselItem>...</CarouselItem>\par
+  </CarouselContent>\par
+  <CarouselPrevious className="rtl:rotate-180" />\par
+  <CarouselNext className="rtl:rotate-180" />\par
+</Carousel>\par
+```\par
+\par
+The `direction` option accepts `"ltr"` or `"rtl"` and should match the `dir` prop value. You may also want to rotate the navigation buttons using the `rtl:rotate-180` class to ensure they point in the correct direction.\par
+\par
+## API Reference\par
+\par
+See the [Embla Carousel docs](https://www.embla-carousel.com/api/) for more information on props and plugins.\par
+}
+ 

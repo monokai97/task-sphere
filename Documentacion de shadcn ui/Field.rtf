@@ -1,0 +1,411 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang2058{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset1 Segoe UI Symbol;}{\f2\fnil Calibri;}}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang10 ---\par
+title: Field\par
+description: Combine labels, controls, and help text to compose accessible form fields and grouped inputs.\par
+base: radix\par
+component: true\par
+---\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="field-demo"\par
+  previewClassName="h-[800px] p-6 md:h-[850px]"\par
+/>\par
+\par
+## Installation\par
+\par
+<CodeTabs>\par
+\par
+<TabsList>\par
+  <TabsTrigger value="cli">Command</TabsTrigger>\par
+  <TabsTrigger value="manual">Manual</TabsTrigger>\par
+</TabsList>\par
+<TabsContent value="cli">\par
+\par
+```bash\par
+npx shadcn@latest add field\par
+```\par
+\par
+</TabsContent>\par
+\par
+<TabsContent value="manual">\par
+\par
+<Steps className="mb-0 pt-2">\par
+\par
+<Step>Copy and paste the following code into your project.</Step>\par
+\par
+<ComponentSource\par
+  name="field"\par
+  title="components/ui/field.tsx"\par
+  styleName="radix-nova"\par
+/>\par
+\par
+<Step>Update the import paths to match your project setup.</Step>\par
+\par
+</Steps>\par
+\par
+</TabsContent>\par
+\par
+</CodeTabs>\par
+\par
+## Usage\par
+\par
+```tsx showLineNumbers\par
+import \{\par
+  Field,\par
+  FieldContent,\par
+  FieldDescription,\par
+  FieldError,\par
+  FieldGroup,\par
+  FieldLabel,\par
+  FieldLegend,\par
+  FieldSeparator,\par
+  FieldSet,\par
+  FieldTitle,\par
+\} from "@/components/ui/field"\par
+```\par
+\par
+```tsx showLineNumbers\par
+<FieldSet>\par
+  <FieldLegend>Profile</FieldLegend>\par
+  <FieldDescription>This appears on invoices and emails.</FieldDescription>\par
+  <FieldGroup>\par
+    <Field>\par
+      <FieldLabel htmlFor="name">Full name</FieldLabel>\par
+      <Input id="name" autoComplete="off" placeholder="Evil Rabbit" />\par
+      <FieldDescription>This appears on invoices and emails.</FieldDescription>\par
+    </Field>\par
+    <Field>\par
+      <FieldLabel htmlFor="username">Username</FieldLabel>\par
+      <Input id="username" autoComplete="off" aria-invalid />\par
+      <FieldError>Choose another username.</FieldError>\par
+    </Field>\par
+    <Field orientation="horizontal">\par
+      <Switch id="newsletter" />\par
+      <FieldLabel htmlFor="newsletter">Subscribe to the newsletter</FieldLabel>\par
+    </Field>\par
+  </FieldGroup>\par
+</FieldSet>\par
+```\par
+\par
+## Composition\par
+\par
+### Field\par
+\par
+A single control with label, helper text, and validation.\par
+\par
+```text\par
+Field\par
+\f1\u9500?\u9472?\u9472?\f0  FieldLabel\par
+\f1\u9500?\u9472?\u9472?\f0  Input / Textarea / Switch / Select\par
+\f1\u9500?\u9472?\u9472?\f0  FieldDescription\par
+\f1\u9492?\u9472?\u9472?\f0  FieldError\par
+```\par
+\par
+### FieldGroup\par
+\par
+Related fields in one group. Use `FieldSeparator` between sections when needed.\par
+\par
+```text\par
+FieldGroup\par
+\f1\u9500?\u9472?\u9472?\f0  Field\par
+\f1\u9474?\f0    \f1\u9500?\u9472?\u9472?\f0  FieldLabel\par
+\f1\u9474?\f0    \f1\u9500?\u9472?\u9472?\f0  Input / Textarea / Switch / Select\par
+\f1\u9474?\f0    \f1\u9500?\u9472?\u9472?\f0  FieldDescription\par
+\f1\u9474?\f0    \f1\u9492?\u9472?\u9472?\f0  FieldError\par
+\f1\u9500?\u9472?\u9472?\f0  FieldSeparator\par
+\f1\u9492?\u9472?\u9472?\f0  Field\par
+    \f1\u9500?\u9472?\u9472?\f0  FieldLabel\par
+    \f1\u9492?\u9472?\u9472?\f0  Input / Textarea / Switch / Select\par
+```\par
+\par
+### FieldSet\par
+\par
+Semantic grouping with a legend and description, usually containing a `FieldGroup`.\par
+\par
+```text\par
+FieldSet\par
+\f1\u9500?\u9472?\u9472?\f0  FieldLegend\par
+\f1\u9500?\u9472?\u9472?\f0  FieldDescription\par
+\f1\u9492?\u9472?\u9472?\f0  FieldGroup\par
+    \f1\u9500?\u9472?\u9472?\f0  Field\par
+    \f1\u9474?\f0    \f1\u9500?\u9472?\u9472?\f0  FieldLabel\par
+    \f1\u9474?\f0    \f1\u9500?\u9472?\u9472?\f0  Input / Textarea / Switch / Select\par
+    \f1\u9474?\f0    \f1\u9500?\u9472?\u9472?\f0  FieldDescription\par
+    \f1\u9474?\f0    \f1\u9492?\u9472?\u9472?\f0  FieldError\par
+    \f1\u9492?\u9472?\u9472?\f0  Field\par
+        \f1\u9500?\u9472?\u9472?\f0  FieldLabel\par
+        \f1\u9492?\u9472?\u9472?\f0  Input / Textarea / Switch / Select\par
+```\par
+\par
+## Anatomy\par
+\par
+The `Field` family is designed for composing accessible forms. A typical field is structured as follows:\par
+\par
+```tsx showLineNumbers\par
+<Field>\par
+  <FieldLabel htmlFor="input-id">Label</FieldLabel>\par
+  \{/* Input, Select, Switch, etc. */\}\par
+  <FieldDescription>Optional helper text.</FieldDescription>\par
+  <FieldError>Validation message.</FieldError>\par
+</Field>\par
+```\par
+\par
+- `Field` is the core wrapper for a single field.\par
+- `FieldContent` is a flex column that groups label and description. Not required if you have no description.\par
+- Wrap related fields with `FieldGroup`, and use `FieldSet` with `FieldLegend` for semantic grouping.\par
+\par
+## Form\par
+\par
+See the [Form](/docs/forms) documentation for building forms with the `Field` component and [React Hook Form](/docs/forms/react-hook-form), [Tanstack Form](/docs/forms/tanstack-form), or [Formisch](/docs/forms/formisch).\par
+\par
+## Examples\par
+\par
+### Input\par
+\par
+<ComponentPreview styleName="radix-nova" name="field-input" />\par
+\par
+### Textarea\par
+\par
+<ComponentPreview styleName="radix-nova" name="field-textarea" />\par
+\par
+### Select\par
+\par
+<ComponentPreview styleName="radix-nova" name="field-select" />\par
+\par
+### Slider\par
+\par
+<ComponentPreview styleName="radix-nova" name="field-slider" />\par
+\par
+### Fieldset\par
+\par
+<ComponentPreview styleName="radix-nova" name="field-fieldset" />\par
+\par
+### Checkbox\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="field-checkbox"\par
+  previewClassName="h-[32rem]"\par
+/>\par
+\par
+### Radio\par
+\par
+<ComponentPreview styleName="radix-nova" name="field-radio" />\par
+\par
+### Switch\par
+\par
+<ComponentPreview styleName="radix-nova" name="field-switch" />\par
+\par
+### Choice Card\par
+\par
+Wrap `Field` components inside `FieldLabel` to create selectable field groups. This works with `RadioItem`, `Checkbox` and `Switch` components.\par
+\par
+<ComponentPreview styleName="radix-nova" name="field-choice-card" />\par
+\par
+### Field Group\par
+\par
+Stack `Field` components with `FieldGroup`. Add `FieldSeparator` to divide them.\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="field-group"\par
+  previewClassName="h-96"\par
+/>\par
+\par
+## RTL\par
+\par
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="field-rtl"\par
+  direction="rtl"\par
+  previewClassName="h-auto p-6"\par
+/>\par
+\par
+## Responsive Layout\par
+\par
+- **Vertical fields:** Default orientation stacks label, control, and helper text\f2\emdash ideal for mobile-first layouts.\par
+- **Horizontal fields:** Set `orientation="horizontal"` on `Field` to align the label and control side-by-side. Pair with `FieldContent` to keep descriptions aligned.\par
+- **Responsive fields:** Set `orientation="responsive"` for automatic column layouts inside container-aware parents. Apply `@container/field-group` classes on `FieldGroup` to switch orientations at specific breakpoints.\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="field-responsive"\par
+  previewClassName="h-[650px] p-6 md:h-[500px] md:p-10"\par
+/>\par
+\par
+## Validation and Errors\par
+\par
+- Add `data-invalid` to `Field` to switch the entire block into an error state.\par
+- Add `aria-invalid` on the input itself for assistive technologies.\par
+- Render `FieldError` immediately after the control or inside `FieldContent` to keep error messages aligned with the field.\par
+\par
+```tsx showLineNumbers /data-invalid/ /aria-invalid/\par
+<Field data-invalid>\par
+  <FieldLabel htmlFor="email">Email</FieldLabel>\par
+  <Input id="email" type="email" aria-invalid />\par
+  <FieldError>Enter a valid email address.</FieldError>\par
+</Field>\par
+```\par
+\par
+## Accessibility\par
+\par
+- `FieldSet` and `FieldLegend` keep related controls grouped for keyboard and assistive tech users.\par
+- `Field` outputs `role="group"` so nested controls inherit labeling from `FieldLabel` and `FieldLegend` when combined.\par
+- Apply `FieldSeparator` sparingly to ensure screen readers encounter clear section boundaries.\par
+\par
+## API Reference\par
+\par
+### FieldSet\par
+\par
+Container that renders a semantic `fieldset` with spacing presets.\par
+\par
+| Prop        | Type     | Default |\par
+| ----------- | -------- | ------- |\par
+| `className` | `string` |         |\par
+\par
+```tsx\par
+<FieldSet>\par
+  <FieldLegend>Delivery</FieldLegend>\par
+  <FieldGroup>\{/* Fields */\}</FieldGroup>\par
+</FieldSet>\par
+```\par
+\par
+### FieldLegend\par
+\par
+Legend element for a `FieldSet`. Switch to the `label` variant to align with label sizing.\par
+\par
+| Prop        | Type                  | Default    |\par
+| ----------- | --------------------- | ---------- |\par
+| `variant`   | `"legend" \\| "label"` | `"legend"` |\par
+| `className` | `string`              |            |\par
+\par
+```tsx\par
+<FieldLegend variant="label">Notification Preferences</FieldLegend>\par
+```\par
+\par
+The `FieldLegend` has two variants: `legend` and `label`. The `label` variant applies label sizing and alignment. Handy if you have nested `FieldSet`.\par
+\par
+### FieldGroup\par
+\par
+Layout wrapper that stacks `Field` components and enables container queries for responsive orientations.\par
+\par
+| Prop        | Type     | Default |\par
+| ----------- | -------- | ------- |\par
+| `className` | `string` |         |\par
+\par
+```tsx\par
+<FieldGroup className="@container/field-group flex flex-col gap-6">\par
+  <Field>\{/* ... */\}</Field>\par
+  <Field>\{/* ... */\}</Field>\par
+</FieldGroup>\par
+```\par
+\par
+### Field\par
+\par
+The core wrapper for a single field. Provides orientation control, invalid state styling, and spacing.\par
+\par
+| Prop           | Type                                         | Default      |\par
+| -------------- | -------------------------------------------- | ------------ |\par
+| `orientation`  | `"vertical" \\| "horizontal" \\| "responsive"` | `"vertical"` |\par
+| `className`    | `string`                                     |              |\par
+| `data-invalid` | `boolean`                                    |              |\par
+\par
+```tsx\par
+<Field orientation="horizontal">\par
+  <FieldLabel htmlFor="remember">Remember me</FieldLabel>\par
+  <Switch id="remember" />\par
+</Field>\par
+```\par
+\par
+### FieldContent\par
+\par
+Flex column that groups control and descriptions when the label sits beside the control. Not required if you have no description.\par
+\par
+| Prop        | Type     | Default |\par
+| ----------- | -------- | ------- |\par
+| `className` | `string` |         |\par
+\par
+```tsx\par
+<Field>\par
+  <Checkbox id="notifications" />\par
+  <FieldContent>\par
+    <FieldLabel htmlFor="notifications">Notifications</FieldLabel>\par
+    <FieldDescription>Email, SMS, and push options.</FieldDescription>\par
+  </FieldContent>\par
+</Field>\par
+```\par
+\par
+### FieldLabel\par
+\par
+Label styled for both direct inputs and nested `Field` children.\par
+\par
+| Prop        | Type      | Default |\par
+| ----------- | --------- | ------- |\par
+| `className` | `string`  |         |\par
+| `asChild`   | `boolean` | `false` |\par
+\par
+```tsx\par
+<FieldLabel htmlFor="email">Email</FieldLabel>\par
+```\par
+\par
+### FieldTitle\par
+\par
+Renders a title with label styling inside `FieldContent`.\par
+\par
+| Prop        | Type     | Default |\par
+| ----------- | -------- | ------- |\par
+| `className` | `string` |         |\par
+\par
+```tsx\par
+<FieldContent>\par
+  <FieldTitle>Enable Touch ID</FieldTitle>\par
+  <FieldDescription>Unlock your device faster.</FieldDescription>\par
+</FieldContent>\par
+```\par
+\par
+### FieldDescription\par
+\par
+Helper text slot that automatically balances long lines in horizontal layouts.\par
+\par
+| Prop        | Type     | Default |\par
+| ----------- | -------- | ------- |\par
+| `className` | `string` |         |\par
+\par
+```tsx\par
+<FieldDescription>We never share your email with anyone.</FieldDescription>\par
+```\par
+\par
+### FieldSeparator\par
+\par
+Visual divider to separate sections inside a `FieldGroup`. Accepts optional inline content.\par
+\par
+| Prop        | Type     | Default |\par
+| ----------- | -------- | ------- |\par
+| `className` | `string` |         |\par
+\par
+```tsx\par
+<FieldSeparator>Or continue with</FieldSeparator>\par
+```\par
+\par
+### FieldError\par
+\par
+Accessible error container that accepts children or an `errors` array (e.g., from `react-hook-form`).\par
+\par
+| Prop        | Type                                       | Default |\par
+| ----------- | ------------------------------------------ | ------- |\par
+| `errors`    | `Array<\{ message?: string \} \\| undefined>` |         |\par
+| `className` | `string`                                   |         |\par
+\par
+```tsx\par
+<FieldError errors=\{errors.username\} />\par
+```\par
+\par
+When the `errors` array contains multiple messages, the component renders a list automatically.\par
+\par
+`FieldError` also accepts issues produced by any validator that implements [Standard Schema](https://standardschema.dev/), including Zod, Valibot, and ArkType. Pass the `issues` array from the schema result directly to render a unified error list across libraries.\f0\par
+}
+ 

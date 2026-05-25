@@ -1,0 +1,409 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang2058{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang10 ---\par
+title: Calendar\par
+description: A calendar component that allows users to select a date or a range of dates.\par
+base: radix\par
+component: true\par
+links:\par
+  doc: {{\field{\*\fldinst{HYPERLINK https://react-day-picker.js.org }}{\fldrslt{https://react-day-picker.js.org\ul0\cf0}}}}\f0\fs22\par
+---\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="calendar-demo"\par
+  previewClassName="h-96"\par
+/>\par
+\par
+## Installation\par
+\par
+<CodeTabs>\par
+\par
+<TabsList>\par
+  <TabsTrigger value="cli">Command</TabsTrigger>\par
+  <TabsTrigger value="manual">Manual</TabsTrigger>\par
+</TabsList>\par
+<TabsContent value="cli">\par
+\par
+```bash\par
+npx shadcn@latest add calendar\par
+```\par
+\par
+</TabsContent>\par
+\par
+<TabsContent value="manual">\par
+\par
+<Steps className="mb-0 pt-2">\par
+\par
+<Step>Install the following dependencies:</Step>\par
+\par
+```bash\par
+npm install react-day-picker date-fns\par
+```\par
+\par
+<Step>Add the `Button` component to your project.</Step>\par
+\par
+The `Calendar` component uses the `Button` component. Make sure you have it installed in your project.\par
+\par
+<Step>Copy and paste the following code into your project.</Step>\par
+\par
+<ComponentSource\par
+  name="calendar"\par
+  title="components/ui/calendar.tsx"\par
+  styleName="radix-nova"\par
+/>\par
+\par
+<Step>Update the import paths to match your project setup.</Step>\par
+\par
+</Steps>\par
+\par
+</TabsContent>\par
+\par
+</CodeTabs>\par
+\par
+## Usage\par
+\par
+```tsx showLineNumbers\par
+import \{ Calendar \} from "@/components/ui/calendar"\par
+```\par
+\par
+```tsx showLineNumbers\par
+const [date, setDate] = React.useState<Date | undefined>(new Date())\par
+\par
+return (\par
+  <Calendar\par
+    mode="single"\par
+    selected=\{date\}\par
+    onSelect=\{setDate\}\par
+    className="rounded-lg border"\par
+  />\par
+)\par
+```\par
+\par
+See the [React DayPicker](https://react-day-picker.js.org) documentation for more information.\par
+\par
+## About\par
+\par
+The `Calendar` component is built on top of [React DayPicker](https://react-day-picker.js.org).\par
+\par
+## Date Picker\par
+\par
+You can use the `<Calendar>` component to build a date picker. See the [Date Picker](/docs/components/radix/date-picker) page for more information.\par
+\par
+## Persian / Hijri / Jalali Calendar\par
+\par
+To use the Persian calendar, edit `components/ui/calendar.tsx` and replace `react-day-picker` with `react-day-picker/persian`.\par
+\par
+```diff\par
+- import \{ DayPicker \} from "react-day-picker"\par
++ import \{ DayPicker \} from "react-day-picker/persian"\par
+```\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="calendar-hijri"\par
+  title="Persian / Hijri / Jalali Calendar"\par
+  description="A Persian calendar."\par
+  previewClassName="h-[400px]"\par
+/>\par
+\par
+## Selected Date (With TimeZone)\par
+\par
+The Calendar component accepts a `timeZone` prop to ensure dates are displayed and selected in the user's local timezone.\par
+\par
+```tsx showLineNumbers\par
+export function CalendarWithTimezone() \{\par
+  const [date, setDate] = React.useState<Date | undefined>(undefined)\par
+  const [timeZone, setTimeZone] = React.useState<string | undefined>(undefined)\par
+\par
+  React.useEffect(() => \{\par
+    setTimeZone(Intl.DateTimeFormat().resolvedOptions().timeZone)\par
+  \}, [])\par
+\par
+  return (\par
+    <Calendar\par
+      mode="single"\par
+      selected=\{date\}\par
+      onSelect=\{setDate\}\par
+      timeZone=\{timeZone\}\par
+    />\par
+  )\par
+\}\par
+```\par
+\par
+**Note:** If you notice a selected date offset (for example, selecting the 20th highlights the 19th), make sure the `timeZone` prop is set to the user's local timezone.\par
+\par
+**Why client-side?** The timezone is detected using `Intl.DateTimeFormat().resolvedOptions().timeZone` inside a `useEffect` to ensure compatibility with server-side rendering. Detecting the timezone during render would cause hydration mismatches, as the server and client may be in different timezones.\par
+\par
+## Examples\par
+\par
+### Basic\par
+\par
+A basic calendar component. We used `className="rounded-lg border"` to style the calendar.\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="calendar-basic"\par
+  previewClassName="h-96"\par
+/>\par
+\par
+### Range Calendar\par
+\par
+Use the `mode="range"` prop to enable range selection.\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="calendar-range"\par
+  previewClassName="h-[36rem] md:h-96"\par
+/>\par
+\par
+### Month and Year Selector\par
+\par
+Use `captionLayout="dropdown"` to show month and year dropdowns.\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="calendar-caption"\par
+  previewClassName="h-96"\par
+/>\par
+\par
+### Presets\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="calendar-presets"\par
+  previewClassName="h-[650px]"\par
+/>\par
+\par
+### Date and Time Picker\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="calendar-time"\par
+  previewClassName="h-[600px]"\par
+/>\par
+\par
+### Booked dates\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="calendar-booked-dates"\par
+  previewClassName="h-96"\par
+/>\par
+\par
+### Custom Cell Size\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="calendar-custom-days"\par
+  title="Custom Cell Size"\par
+  description="A calendar with custom cell size that's responsive."\par
+  className="**:[.preview]:h-[560px]"\par
+/>\par
+\par
+You can customize the size of calendar cells using the `--cell-size` CSS variable. You can also make it responsive by using breakpoint-specific values:\par
+\par
+```tsx showLineNumbers\par
+<Calendar\par
+  mode="single"\par
+  selected=\{date\}\par
+  onSelect=\{setDate\}\par
+  className="rounded-lg border [--cell-size:--spacing(11)] md:[--cell-size:--spacing(12)]"\par
+/>\par
+```\par
+\par
+Or use fixed values:\par
+\par
+```tsx showLineNumbers\par
+<Calendar\par
+  mode="single"\par
+  selected=\{date\}\par
+  onSelect=\{setDate\}\par
+  className="rounded-lg border [--cell-size:2.75rem] md:[--cell-size:3rem]"\par
+/>\par
+```\par
+\par
+### Week Numbers\par
+\par
+Use `showWeekNumber` to show week numbers.\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="calendar-week-numbers"\par
+  previewClassName="h-96"\par
+/>\par
+\par
+## RTL\par
+\par
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).\par
+\par
+See also the [Hijri Guide](#persian--hijri--jalali-calendar) for enabling the Persian / Hijri / Jalali calendar.\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="calendar-rtl"\par
+  direction="rtl"\par
+  previewClassName="h-96"\par
+/>\par
+\par
+When using RTL, import the locale from `react-day-picker/locale` and pass both the `locale` and `dir` props to the Calendar component:\par
+\par
+```tsx showLineNumbers\par
+import \{ arSA \} from "react-day-picker/locale"\par
+\par
+;<Calendar\par
+  mode="single"\par
+  selected=\{date\}\par
+  onSelect=\{setDate\}\par
+  locale=\{arSA\}\par
+  dir="rtl"\par
+/>\par
+```\par
+\par
+## API Reference\par
+\par
+See the [React DayPicker](https://react-day-picker.js.org) documentation for more information on the `Calendar` component.\par
+\par
+## Changelog\par
+\par
+### RTL Support\par
+\par
+If you're upgrading from a previous version of the `Calendar` component, you'll need to apply the following updates to add locale support:\par
+\par
+<Steps>\par
+\par
+<Step>Import the `Locale` type.</Step>\par
+\par
+Add `Locale` to your imports from `react-day-picker`:\par
+\par
+```diff\par
+  import \{\par
+    DayPicker,\par
+    getDefaultClassNames,\par
+    type DayButton,\par
++   type Locale,\par
+  \} from "react-day-picker"\par
+```\par
+\par
+<Step>Add `locale` prop to the Calendar component.</Step>\par
+\par
+Add the `locale` prop to the component's props:\par
+\par
+```diff\par
+  function Calendar(\{\par
+    className,\par
+    classNames,\par
+    showOutsideDays = true,\par
+    captionLayout = "label",\par
+    buttonVariant = "ghost",\par
++   locale,\par
+    formatters,\par
+    components,\par
+    ...props\par
+  \}: React.ComponentProps<typeof DayPicker> & \{\par
+    buttonVariant?: React.ComponentProps<typeof Button>["variant"]\par
+  \}) \{\par
+```\par
+\par
+<Step>Pass `locale` to DayPicker.</Step>\par
+\par
+Pass the `locale` prop to the `DayPicker` component:\par
+\par
+```diff\par
+    <DayPicker\par
+      showOutsideDays=\{showOutsideDays\}\par
+      className=\{cn(...)\}\par
+      captionLayout=\{captionLayout\}\par
++     locale=\{locale\}\par
+      formatters=\{\{\par
+        formatMonthDropdown: (date) =>\par
+-         date.toLocaleString("default", \{ month: "short" \}),\par
++         date.toLocaleString(locale?.code, \{ month: "short" \}),\par
+        ...formatters,\par
+      \}\}\par
+```\par
+\par
+<Step>Update CalendarDayButton to accept locale.</Step>\par
+\par
+Update the `CalendarDayButton` component signature and pass `locale`:\par
+\par
+```diff\par
+  function CalendarDayButton(\{\par
+    className,\par
+    day,\par
+    modifiers,\par
++   locale,\par
+    ...props\par
+- \}: React.ComponentProps<typeof DayButton>) \{\par
++ \}: React.ComponentProps<typeof DayButton> & \{ locale?: Partial<Locale> \}) \{\par
+```\par
+\par
+<Step>Update date formatting in CalendarDayButton.</Step>\par
+\par
+Use `locale?.code` in the date formatting:\par
+\par
+```diff\par
+    <Button\par
+      variant="ghost"\par
+      size="icon"\par
+-     data-day=\{day.date.toLocaleDateString()\}\par
++     data-day=\{day.date.toLocaleDateString(locale?.code)\}\par
+      ...\par
+    />\par
+```\par
+\par
+<Step>Pass locale to DayButton component.</Step>\par
+\par
+Update the `DayButton` component usage to pass the `locale` prop:\par
+\par
+```diff\par
+      components=\{\{\par
+        ...\par
+-       DayButton: CalendarDayButton,\par
++       DayButton: (\{ ...props \}) => (\par
++         <CalendarDayButton locale=\{locale\} \{...props\} />\par
++       ),\par
+        ...\par
+      \}\}\par
+```\par
+\par
+<Step>Update RTL-aware CSS classes.</Step>\par
+\par
+Replace directional classes with logical properties for better RTL support:\par
+\par
+```diff\par
+  // In the day classNames:\par
+- [&:last-child[data-selected=true]_button]:rounded-r-(--cell-radius)\par
++ [&:last-child[data-selected=true]_button]:rounded-e-(--cell-radius)\par
+- [&:nth-child(2)[data-selected=true]_button]:rounded-l-(--cell-radius)\par
++ [&:nth-child(2)[data-selected=true]_button]:rounded-s-(--cell-radius)\par
+- [&:first-child[data-selected=true]_button]:rounded-l-(--cell-radius)\par
++ [&:first-child[data-selected=true]_button]:rounded-s-(--cell-radius)\par
+\par
+  // In range_start classNames:\par
+- rounded-l-(--cell-radius) ... after:right-0\par
++ rounded-s-(--cell-radius) ... after:end-0\par
+\par
+  // In range_end classNames:\par
+- rounded-r-(--cell-radius) ... after:left-0\par
++ rounded-e-(--cell-radius) ... after:start-0\par
+\par
+  // In CalendarDayButton className:\par
+- data-[range-end=true]:rounded-r-(--cell-radius)\par
++ data-[range-end=true]:rounded-e-(--cell-radius)\par
+- data-[range-start=true]:rounded-l-(--cell-radius)\par
++ data-[range-start=true]:rounded-s-(--cell-radius)\par
+```\par
+\par
+</Steps>\par
+\par
+After applying these changes, you can use the `locale` prop to provide locale-specific formatting:\par
+\par
+```tsx\par
+import \{ enUS \} from "react-day-picker/locale"\par
+\par
+;<Calendar mode="single" selected=\{date\} onSelect=\{setDate\} locale=\{enUS\} />\par
+```\par
+}
+ 

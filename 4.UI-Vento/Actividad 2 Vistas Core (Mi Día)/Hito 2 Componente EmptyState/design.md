@@ -1,24 +1,25 @@
-# Design: Componente EmptyState (Hito 4.2.2)
+# Design: EmptyState Component & Vento Layout (Hito 4.2.2)
 
-## Decisiones de Arquitectura
-1. **Separación:** Componente localizado en `src/components/vento/`.
-2. **Animación:** Usar `framer-motion` para una entrada suave (`fade-in`) del estado vacío.
-3. **SVG Integration:** Ilustraciones minimalistas inline para mantener el componente autocontenido.
+## Arquitectura
+- **Root Layout**: Un `SidebarProvider` que envuelve un layout con `SideNavBar` y `main`.
+- **Bento Grid**: Grid de CSS configurado con `md:grid-cols-4` y `md:grid-rows-6` para cumplir con la maqueta.
+- **Componentes Vento**:
+    - `SideNavBar`: Menú lateral estilizado.
+    - `EmptyStateBento`: Grid de tarjetas con `glass-panel` y `VentoPanel`.
 
-## Diagrama de Componente
+### Diagrama de Layout
 ```mermaid
 graph TD
-    Parent[Dashboard Page] --> ES[EmptyStateVento]
-    ES --> Illustration[SVG Illustration]
-    ES --> Message[Copy: Motivate User]
-    ES --> Action[Call to Action Button]
+    A[Root Layout] --> B[SideNavBar]
+    A --> C[Main Workspace]
+    C --> D[TopAppBar]
+    C --> E[EmptyState Bento Grid]
+    E --> F[Greeting Card]
+    E --> G[Zen Moment Card]
+    E --> H[Image Card]
+    C --> I[TaskInput Sticky Footer]
 ```
 
-## Contrato de Propiedades (Props)
-```typescript
-interface EmptyStateProps {
-  title: string;
-  description: string;
-  onAction: () => void;
-}
-```
+## Decisiones Técnicas
+- **Grid System**: Uso de `display: grid` con clases específicas de Tailwind para lograr el layout asimétrico de referencia.
+- **Backdrop Blur**: Uso de la clase `backdrop-blur-vento` definida en el Hito anterior.

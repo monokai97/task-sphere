@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
+import { Providers } from "./providers";
 
 export const metadata: Metadata = {
   title: "Vento To-Do",
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="es" className={GeistSans.className}>
       <body className="bg-background text-foreground antialiased">
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

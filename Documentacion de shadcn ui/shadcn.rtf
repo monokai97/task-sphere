@@ -1,0 +1,509 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang2058{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset1 Cambria Math;}}
+{\*\generator Riched20 10.0.19041}{\*\mmathPr\mmathFont1\mwrapIndent1440 }\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang10 ---\par
+title: shadcn\par
+description: Use the shadcn CLI to add components to your project.\par
+---\par
+\par
+## init\par
+\par
+Use the `init` command to initialize configuration and dependencies for an existing project, or create a new project with `--name`.\par
+\par
+The `init` command installs dependencies, adds the `cn` util and configures CSS variables for the project.\par
+\par
+```bash\par
+npx shadcn@latest init\par
+```\par
+\par
+**Options**\par
+\par
+```bash\par
+Usage: shadcn init [options] [components...]\par
+\par
+initialize your project and install dependencies\par
+\par
+Arguments:\par
+  components                 names, url or local path to component\par
+\par
+Options:\par
+  -t, --template <template>  the template to use. (next, vite, start, react-router, laravel, astro)\par
+  -b, --base <base>          the component library to use. (radix, base)\par
+  -p, --preset [name]        use a preset configuration\par
+  -y, --yes                  skip confirmation prompt. (default: true)\par
+  -d, --defaults             use default configuration: --template=next --preset=nova (default: false)\par
+  -f, --force                force overwrite of existing configuration. (default: false)\par
+  -c, --cwd <cwd>            the working directory. defaults to the current directory.\par
+  -n, --name <name>          the name for the new project.\par
+  -s, --silent               mute output. (default: false)\par
+  --css-variables            use css variables for theming. (default: true)\par
+  --no-css-variables         do not use css variables for theming.\par
+  --monorepo                 scaffold a monorepo project.\par
+  --no-monorepo              skip the monorepo prompt.\par
+  --rtl                      enable RTL support.\par
+  --no-rtl                   disable RTL support.\par
+  --pointer                  enable pointer cursor for buttons.\par
+  --no-pointer               disable pointer cursor for buttons.\par
+  --reinstall                re-install existing UI components.\par
+  --no-reinstall             do not re-install existing UI components.\par
+  -h, --help                 display help for command\par
+```\par
+\par
+The `create` command is an alias for `init`:\par
+\par
+```bash\par
+npx shadcn@latest create\par
+```\par
+\par
+---\par
+\par
+## add\par
+\par
+Use the `add` command to add components and dependencies to your project.\par
+\par
+```bash\par
+npx shadcn@latest add [component]\par
+```\par
+\par
+**Options**\par
+\par
+```bash\par
+Usage: shadcn add [options] [components...]\par
+\par
+add a component to your project\par
+\par
+Arguments:\par
+  components           name, url or local path to component\par
+\par
+Options:\par
+  -y, --yes            skip confirmation prompt. (default: false)\par
+  -o, --overwrite      overwrite existing files. (default: false)\par
+  -c, --cwd <cwd>      the working directory. defaults to the current directory.\par
+  -a, --all            add all available components (default: false)\par
+  -p, --path <path>    the path to add the component to.\par
+  -s, --silent         mute output. (default: false)\par
+  --dry-run            preview changes without writing files. (default: false)\par
+  --diff [path]        show diff for a file.\par
+  --view [path]        show file contents.\par
+  -h, --help           display help for command\par
+```\par
+\par
+---\par
+\par
+## apply\par
+\par
+Use the `apply` command to apply a preset to an existing project.\par
+\par
+```bash\par
+npx shadcn@latest apply a2r6bw\par
+```\par
+\par
+You can apply only the theme or fonts from a preset without reinstalling UI components:\par
+\par
+```bash\par
+npx shadcn@latest apply a2r6bw --only theme\par
+```\par
+\par
+Supported values for `--only` are `theme` and `font`.\par
+\par
+**Options**\par
+\par
+```bash\par
+Usage: shadcn apply [options] [preset]\par
+\par
+apply a preset to an existing project\par
+\par
+Arguments:\par
+  preset             the preset to apply\par
+\par
+Options:\par
+  --preset <preset>  preset configuration to apply\par
+  --only [parts]     apply only parts of a preset: theme, font\par
+  -y, --yes          skip confirmation prompt. (default: false)\par
+  -c, --cwd <cwd>    the working directory. defaults to the current directory.\par
+  -s, --silent       mute output. (default: false)\par
+  -h, --help         display help for command\par
+```\par
+\par
+---\par
+\par
+## preset\par
+\par
+Use the `preset` command to inspect preset codes and resolve the preset for an existing project.\par
+\par
+```bash\par
+npx shadcn@latest preset decode a2r6bw\par
+```\par
+\par
+### preset decode\par
+\par
+Use `preset decode` to decode a preset code.\par
+\par
+```bash\par
+npx shadcn@latest preset decode a2r6bw\par
+```\par
+\par
+**Options**\par
+\par
+```bash\par
+Usage: shadcn preset decode [options] <code>\par
+\par
+decode a preset code\par
+\par
+Arguments:\par
+  code        the preset code to decode\par
+\par
+Options:\par
+  --json      output as JSON. (default: false)\par
+  -h, --help  display help for command\par
+```\par
+\par
+### preset resolve\par
+\par
+Use `preset resolve` to resolve the preset from the current project.\par
+\par
+```bash\par
+npx shadcn@latest preset resolve\par
+```\par
+\par
+The `preset info` command is an alias for `preset resolve`:\par
+\par
+```bash\par
+npx shadcn@latest preset info\par
+```\par
+\par
+**Options**\par
+\par
+```bash\par
+Usage: shadcn preset resolve|info [options]\par
+\par
+resolve a preset from your project\par
+\par
+Options:\par
+  -c, --cwd <cwd>  the working directory. defaults to the current directory.\par
+  --json            output as JSON. (default: false)\par
+  -h, --help        display help for command\par
+```\par
+\par
+### preset url\par
+\par
+Use `preset url` to print the create URL for a preset code.\par
+\par
+```bash\par
+npx shadcn@latest preset url a2r6bw\par
+```\par
+\par
+**Options**\par
+\par
+```bash\par
+Usage: shadcn preset url [options] <code>\par
+\par
+get the create URL for a preset code\par
+\par
+Arguments:\par
+  code        the preset code\par
+\par
+Options:\par
+  -h, --help  display help for command\par
+```\par
+\par
+### preset open\par
+\par
+Use `preset open` to open a preset code in the browser.\par
+\par
+```bash\par
+npx shadcn@latest preset open a2r6bw\par
+```\par
+\par
+**Options**\par
+\par
+```bash\par
+Usage: shadcn preset open [options] <code>\par
+\par
+open a preset code in the browser\par
+\par
+Arguments:\par
+  code        the preset code\par
+\par
+Options:\par
+  -h, --help  display help for command\par
+```\par
+\par
+---\par
+\par
+## view\par
+\par
+Use the `view` command to view items from the registry before installing them.\par
+\par
+```bash\par
+npx shadcn@latest view [item]\par
+```\par
+\par
+You can view multiple items at once:\par
+\par
+```bash\par
+npx shadcn@latest view button card dialog\par
+```\par
+\par
+Or view items from namespaced registries:\par
+\par
+```bash\par
+npx shadcn@latest view @acme/auth @v0/dashboard\par
+```\par
+\par
+**Options**\par
+\par
+```bash\par
+Usage: shadcn view [options] <items...>\par
+\par
+view items from the registry\par
+\par
+Arguments:\par
+  items            the item names or URLs to view\par
+\par
+Options:\par
+  -c, --cwd <cwd>  the working directory. defaults to the current directory.\par
+  -h, --help       display help for command\par
+```\par
+\par
+---\par
+\par
+## search\par
+\par
+Use the `search` command to search for items from registries.\par
+\par
+```bash\par
+npx shadcn@latest search [registry]\par
+```\par
+\par
+You can search with a query:\par
+\par
+```bash\par
+npx shadcn@latest search @shadcn -q "button"\par
+```\par
+\par
+Or search multiple registries at once:\par
+\par
+```bash\par
+npx shadcn@latest search @shadcn @v0 @acme\par
+```\par
+\par
+The `list` command is an alias for `search`:\par
+\par
+```bash\par
+npx shadcn@latest list @acme\par
+```\par
+\par
+**Options**\par
+\par
+```bash\par
+Usage: shadcn search|list [options] <registries...>\par
+\par
+search items from registries\par
+\par
+Arguments:\par
+  registries             the registry names or urls to search items from. Names\par
+                         must be prefixed with @.\par
+\par
+Options:\par
+  -c, --cwd <cwd>        the working directory. defaults to the current directory.\par
+  -q, --query <query>    query string\par
+  -l, --limit <number>   maximum number of items to display per registry (default: "100")\par
+  -o, --offset <number>  number of items to skip (default: "0")\par
+  -h, --help             display help for command\par
+```\par
+\par
+---\par
+\par
+## build\par
+\par
+Use the `build` command to generate the registry JSON files.\par
+\par
+```bash\par
+npx shadcn@latest build\par
+```\par
+\par
+This command reads the `registry.json` file and generates the registry JSON files in the `public/r` directory.\par
+\par
+**Options**\par
+\par
+```bash\par
+Usage: shadcn build [options] [registry]\par
+\par
+build components for a shadcn registry\par
+\par
+Arguments:\par
+  registry             path to registry.json file (default: "./registry.json")\par
+\par
+Options:\par
+  -o, --output <path>  destination directory for json files (default: "./public/r")\par
+  -c, --cwd <cwd>      the working directory. defaults to the current directory.\par
+  -h, --help           display help for command\par
+```\par
+\par
+To customize the output directory, use the `--output` option.\par
+\par
+```bash\par
+npx shadcn@latest build --output ./public/registry\par
+```\par
+\par
+---\par
+\par
+## docs\par
+\par
+Use the `docs` command to fetch documentation and API references for components.\par
+\par
+```bash\par
+npx shadcn@latest docs [component]\par
+```\par
+\par
+**Options**\par
+\par
+```bash\par
+Usage: shadcn docs [options] [component]\par
+\par
+fetch documentation and API references for components\par
+\par
+Arguments:\par
+  component          the component to get docs for\par
+\par
+Options:\par
+  -c, --cwd <cwd>    the working directory. defaults to the current directory.\par
+  -b, --base <base>  the base to use either 'base' or 'radix'. defaults to project base.\par
+  --json             output as JSON. (default: false)\par
+  -h, --help         display help for command\par
+```\par
+\par
+---\par
+\par
+## info\par
+\par
+Use the `info` command to get information about your project.\par
+\par
+```bash\par
+npx shadcn@latest info\par
+```\par
+\par
+**Options**\par
+\par
+```bash\par
+Usage: shadcn info [options]\par
+\par
+get information about your project\par
+\par
+Options:\par
+  -c, --cwd <cwd>  the working directory. defaults to the current directory.\par
+  --json            output as JSON. (default: false)\par
+  -h, --help        display help for command\par
+```\par
+\par
+---\par
+\par
+## migrate\par
+\par
+Use the `migrate` command to run migrations on your project.\par
+\par
+```bash\par
+npx shadcn@latest migrate [migration]\par
+```\par
+\par
+**Available Migrations**\par
+\par
+| Migration | Description                                             |\par
+| --------- | ------------------------------------------------------- |\par
+| `icons`   | Migrate your UI components to a different icon library. |\par
+| `radix`   | Migrate to radix-ui.                                    |\par
+| `rtl`     | Migrate your components to support RTL (right-to-left). |\par
+\par
+**Options**\par
+\par
+```bash\par
+Usage: shadcn migrate [options] [migration] [path]\par
+\par
+run a migration.\par
+\par
+Arguments:\par
+  migration        the migration to run.\par
+  path             optional path or glob pattern to migrate.\par
+\par
+Options:\par
+  -c, --cwd <cwd>  the working directory. defaults to the current directory.\par
+  -l, --list       list all migrations. (default: false)\par
+  -y, --yes        skip confirmation prompt. (default: false)\par
+  -h, --help       display help for command\par
+```\par
+\par
+---\par
+\par
+### migrate rtl\par
+\par
+The `rtl` migration transforms your components to support RTL (right-to-left) languages.\par
+\par
+```bash\par
+npx shadcn@latest migrate rtl\par
+```\par
+\par
+This will:\par
+\par
+1. Update `components.json` to set `rtl: true`\par
+2. Transform physical CSS properties to logical equivalents (e.g., `ml-4` \f1\u8594?\f0  `ms-4`, `text-left` \f1\u8594?\f0  `text-start`)\par
+3. Add `rtl:` variants where needed (e.g., `space-x-4` \f1\u8594?\f0  `space-x-4 rtl:space-x-reverse`)\par
+\par
+**Migrate specific files**\par
+\par
+You can migrate specific files or use glob patterns:\par
+\par
+```bash\par
+# Migrate a specific file\par
+npx shadcn@latest migrate rtl src/components/ui/button.tsx\par
+\par
+# Migrate files matching a glob pattern\par
+npx shadcn@latest migrate rtl "src/components/ui/**"\par
+```\par
+\par
+If no path is provided, the migration will transform all files in your `ui` directory (from `components.json`).\par
+\par
+---\par
+\par
+### migrate radix\par
+\par
+The `radix` migration updates your imports from individual `@radix-ui/react-*` packages to the unified `radix-ui` package.\par
+\par
+```bash\par
+npx shadcn@latest migrate radix\par
+```\par
+\par
+This will:\par
+\par
+1. Transform imports from `@radix-ui/react-*` to `radix-ui`\par
+2. Add the `radix-ui` package to your `package.json`\par
+\par
+**Before**\par
+\par
+```tsx\par
+import * as DialogPrimitive from "@radix-ui/react-dialog"\par
+import * as SelectPrimitive from "@radix-ui/react-select"\par
+```\par
+\par
+**After**\par
+\par
+```tsx\par
+import \{ Dialog as DialogPrimitive, Select as SelectPrimitive \} from "radix-ui"\par
+```\par
+\par
+**Migrate specific files**\par
+\par
+You can migrate specific files or use glob patterns:\par
+\par
+```bash\par
+# Migrate a specific file.\par
+npx shadcn@latest migrate radix src/components/ui/dialog.tsx\par
+\par
+# Migrate files matching a glob pattern.\par
+npx shadcn@latest migrate radix "src/components/ui/**"\par
+```\par
+\par
+If no path is provided, the migration will transform all files in your `ui` directory (from `components.json`).\par
+\par
+Once complete, you can remove any unused `@radix-ui/react-*` packages from your `package.json`.\lang10\par
+}
+ 

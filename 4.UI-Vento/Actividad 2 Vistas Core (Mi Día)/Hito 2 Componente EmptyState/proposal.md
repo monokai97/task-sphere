@@ -1,9 +1,12 @@
-# Proposal: Componente EmptyState (Hito 4.2.2)
+# Proposal: Hito 4.2.2 - EmptyState Component & Vento Layout
 
-## El "Porqué" y el Impacto
-El estado vacío es el primer contacto del usuario con su espacio de trabajo cuando aún no tiene tareas. Un estado vacío genérico suele ser frío y desalentador. El componente `EmptyStateVento` tiene como propósito transformar este momento en una oportunidad de motivación y claridad, alineado con la estética "Vento" (ligereza, minimalismo, espacio en blanco).
+## Porqué
+El estado "Vacío" es el primer punto de contacto real de un usuario nuevo con nuestra aplicación "Guest-First". Un estado vacío minimalista, estético y con intención ("Vento") reduce la fricción y comunica la propuesta de valor inmediatamente, en lugar de mostrar una lista vacía y aburrida.
 
-El impacto es la **fricción cero**. Al proporcionar un diseño atractivo que invita a la acción ("Mi Día"), reducimos la ansiedad ante una lista vacía y guiamos al usuario hacia la creación de su primera tarea de forma intuitiva, mejorando la métrica de éxito de "fricción cero" definida en el diseño global.
+## Objetivo
+Desarrollar un componente de `EmptyState` que siga las especificaciones de diseño Vento, junto con el layout principal y la navegación lateral, utilizando los tokens de diseño y componentes Shadcn ya integrados.
 
-## Justificación de la Solución
-Desarrollaremos un componente de React dedicado (`EmptyStateVento.tsx`) utilizando componentes base de Shadcn (Card) y utilidades de estilo Vento. Esta solución permite encapsular la lógica de visualización del estado vacío sin ensuciar la lógica del Dashboard principal, permitiendo reutilizar este componente en otras secciones de la aplicación donde el aislamiento de datos (Guest-First) resulte en una lista vacía.
+## Impacto
+- Mejora la retención de usuarios al ofrecer una primera experiencia de alta calidad.
+- Establece el patrón de layout "Bento Grid" que se utilizará en el dashboard principal.
+- Alineación visual con la identidad de "Ethereal Focus".

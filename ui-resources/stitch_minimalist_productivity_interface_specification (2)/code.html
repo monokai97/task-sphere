@@ -1,0 +1,390 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Ethereal Focus - My Day</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .task-checkbox:checked + .checkbox-custom {
+            background-color: #2563eb;
+            border-color: #2563eb;
+        }
+        .task-checkbox:checked + .checkbox-custom::after {
+            content: 'check';
+            font-family: 'Material Symbols Outlined';
+            color: white;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .glass-panel {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-fixed": "#dbe1ff",
+                      "on-secondary-fixed-variant": "#574500",
+                      "surface-container": "#edeeef",
+                      "primary": "#004ac6",
+                      "background": "#f8f9fa",
+                      "surface-tint": "#0053db",
+                      "surface-dim": "#d9dadb",
+                      "inverse-primary": "#b4c5ff",
+                      "text-secondary-dark": "#A1A1AA",
+                      "inverse-surface": "#2e3132",
+                      "tertiary-fixed": "#dce2f7",
+                      "surface-dark": "#18181B",
+                      "tertiary": "#4e5566",
+                      "border-subtle-dark": "rgba(39, 39, 42, 0.5)",
+                      "surface-container-high": "#e7e8e9",
+                      "outline": "#737686",
+                      "tertiary-fixed-dim": "#c0c6db",
+                      "primary-fixed-dim": "#b4c5ff",
+                      "outline-variant": "#c3c6d7",
+                      "on-surface-variant": "#434655",
+                      "on-secondary": "#ffffff",
+                      "surface-elevated-dark": "#27272A",
+                      "on-primary-container": "#eeefff",
+                      "on-primary": "#ffffff",
+                      "on-tertiary-container": "#ecf0ff",
+                      "surface-bright": "#f8f9fa",
+                      "secondary": "#735c00",
+                      "error": "#ba1a1a",
+                      "on-surface": "#191c1d",
+                      "canvas-dark": "#09090B",
+                      "surface-container-lowest": "#ffffff",
+                      "error-container": "#ffdad6",
+                      "secondary-fixed": "#ffe083",
+                      "on-background": "#191c1d",
+                      "text-secondary-light": "#6B7280",
+                      "surface-container-low": "#f3f4f5",
+                      "on-secondary-container": "#6f5900",
+                      "on-primary-fixed": "#00174b",
+                      "on-primary-fixed-variant": "#003ea8",
+                      "border-subtle-light": "#F3F4F6",
+                      "on-tertiary-fixed": "#141b2b",
+                      "secondary-container": "#fed01b",
+                      "surface": "#f8f9fa",
+                      "secondary-fixed-dim": "#eec200",
+                      "on-error-container": "#93000a",
+                      "on-error": "#ffffff",
+                      "inverse-on-surface": "#f0f1f2",
+                      "on-tertiary-fixed-variant": "#404758",
+                      "surface-container-highest": "#e1e3e4",
+                      "primary-container": "#2563eb",
+                      "tertiary-container": "#666d7f",
+                      "surface-variant": "#e1e3e4",
+                      "on-tertiary": "#ffffff",
+                      "on-secondary-fixed": "#231b00"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sidebar-width": "288px",
+                      "container-padding": "3rem",
+                      "detail-panel-width": "384px",
+                      "container-padding-mobile": "1rem",
+                      "gutter-md": "1rem",
+                      "stack-gap": "0.25rem"
+              },
+              "fontFamily": {
+                      "label-sm": ["Geist"],
+                      "display-xl-mobile": ["Geist"],
+                      "task-item": ["Inter"],
+                      "headline-md": ["Geist"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "display-xl": ["Geist"]
+              },
+              "fontSize": {
+                      "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "display-xl-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "task-item": ["15px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "display-xl": ["36px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed">
+<div class="flex h-screen overflow-hidden">
+<!-- Sidebar Navigation -->
+<aside class="fixed left-0 top-0 h-full w-sidebar-width bg-white/80 dark:bg-canvas-dark/80 backdrop-blur-md border-r border-border-subtle-light dark:border-border-subtle-dark z-50 hidden md:flex flex-col py-8">
+<div class="px-6 mb-10">
+<h1 class="font-display-xl text-display-xl font-bold text-primary dark:text-primary-fixed">Ethereal Focus</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant/70 tracking-widest mt-1">STAY PRODUCTIVE</p>
+</div>
+<nav class="flex-1 space-y-1">
+<!-- My Day (Active) -->
+<a class="flex items-center gap-3 px-6 py-3 bg-primary-container/10 text-primary font-semibold border-l-4 border-primary group" href="#">
+<span class="material-symbols-outlined" data-icon="sunny" style="font-variation-settings: 'FILL' 1;">sunny</span>
+<span class="font-body-md">My Day</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-variant/50 transition-colors group" href="#">
+<span class="material-symbols-outlined" data-icon="star">star</span>
+<span class="font-body-md">Important</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-variant/50 transition-colors group" href="#">
+<span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+<span class="font-body-md">Planned</span>
+</a>
+<a class="flex items-center gap-3 px-6 py-3 text-on-surface-variant hover:bg-surface-variant/50 transition-colors group" href="#">
+<span class="material-symbols-outlined" data-icon="task_alt">task_alt</span>
+<span class="font-body-md">Tasks</span>
+</a>
+</nav>
+<div class="px-6 mt-auto space-y-4">
+<button class="w-full flex items-center justify-center gap-2 py-3 bg-primary text-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 active:scale-[0.98]">
+<span class="material-symbols-outlined">add</span>
+<span class="font-headline-md">New List</span>
+</button>
+<div class="pt-4 border-t border-border-subtle-light space-y-1">
+<a class="flex items-center gap-3 px-2 py-2 text-on-surface-variant hover:bg-surface-variant/50 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="text-label-sm uppercase tracking-wider">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-2 py-2 text-on-surface-variant hover:bg-surface-variant/50 transition-colors rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+<span class="text-label-sm uppercase tracking-wider">Help</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Workspace -->
+<main class="flex-1 ml-0 md:ml-sidebar-width transition-all duration-500 bg-background relative overflow-y-auto">
+<!-- Top App Bar (Inside Canvas) -->
+<header class="sticky top-0 z-40 bg-background/50 backdrop-blur-sm px-container-padding-mobile md:px-12 py-6 flex justify-between items-center">
+<div class="flex items-center gap-4">
+<div>
+<h2 class="font-display-xl text-display-xl font-extrabold text-primary">My Day</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Wednesday, October 25</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 rounded-full hover:bg-surface-variant transition-all">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-variant transition-all relative">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+</button>
+<div class="h-10 w-10 rounded-full overflow-hidden border-2 border-white shadow-sm ml-2">
+<img alt="User" data-alt="A professional headshot of a person with a serene expression, set against a soft-focus architectural background with cool blue and grey tones. The lighting is diffused and natural, matching the minimalist and disciplined aesthetic of a high-end productivity app. The overall composition is clean and modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDklgUr2qfNbbSGbmy0MU-NzxLCF3nE4sv6RTXWpq4OrVdUoWzCP43ud-cCOh7opo2Y9KqP8PRDrSh0XVMW0Mo592B7bcChzmClRpCQDHXy84RaGYdLiVI3-f6L2jpoICabXKRw7xyJuMiDHvdvgbSGXV8iUtinT-Ok5LQU0A-0KzF8INW27WuLEbt6E-XomufH9smSaDkLJFu0vvi6bynQYacFFFy_wJvCh8RDMDdX0oN_syJZ4LjJk_C-oMsDphG_G_aOfotUCUL_">
+</div>
+</div>
+</header>
+<!-- Task List Area -->
+<div class="px-container-padding-mobile md:px-12 pb-32 max-w-4xl mx-auto">
+<div class="space-y-3">
+<!-- Task 1: Normal -->
+<div class="group flex items-center gap-4 p-4 bg-white rounded-xl border border-transparent shadow-sm hover:border-outline-variant transition-all duration-200">
+<div class="relative flex items-center justify-center">
+<input class="task-checkbox opacity-0 absolute h-6 w-6 cursor-pointer z-10" type="checkbox">
+<div class="checkbox-custom h-6 w-6 rounded-full border-2 border-outline-variant transition-colors flex items-center justify-center"></div>
+</div>
+<div class="flex-1">
+<p class="font-task-item text-task-item text-on-surface">Finalize quarterly project proposal</p>
+<p class="text-[12px] text-on-surface-variant mt-0.5">Tasks</p>
+</div>
+<button class="opacity-0 group-hover:opacity-100 p-1 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</button>
+</div>
+<!-- Task 2: ACTIVE EDIT STATE -->
+<div class="group flex items-center gap-4 p-4 bg-white rounded-xl border-2 border-primary shadow-lg scale-[1.01] transition-all duration-200 ring-4 ring-primary/5">
+<div class="relative flex items-center justify-center">
+<input class="task-checkbox opacity-0 absolute h-6 w-6 cursor-pointer z-10" type="checkbox">
+<div class="checkbox-custom h-6 w-6 rounded-full border-2 border-primary transition-colors flex items-center justify-center"></div>
+</div>
+<div class="flex-1 flex flex-col">
+<input autofocus="" class="font-task-item text-task-item text-on-surface bg-transparent border-none p-0 focus:ring-0 w-full" type="text" value="Research competitive analysis for Q4">
+<div class="flex items-center gap-3 mt-1.5">
+<span class="flex items-center gap-1 text-[11px] text-primary bg-primary-container/10 px-2 py-0.5 rounded-full font-medium">
+<span class="material-symbols-outlined text-[14px]">calendar_today</span>
+                                    Today
+                                </span>
+<span class="flex items-center gap-1 text-[11px] text-on-surface-variant px-2 py-0.5 rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-[14px]">notifications</span>
+                                    2:00 PM
+                                </span>
+</div>
+</div>
+<button class="p-1 text-primary">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</button>
+</div>
+<!-- Task 3: Normal -->
+<div class="group flex items-center gap-4 p-4 bg-white rounded-xl border border-transparent shadow-sm hover:border-outline-variant transition-all duration-200">
+<div class="relative flex items-center justify-center">
+<input class="task-checkbox opacity-0 absolute h-6 w-6 cursor-pointer z-10" type="checkbox">
+<div class="checkbox-custom h-6 w-6 rounded-full border-2 border-outline-variant transition-colors flex items-center justify-center"></div>
+</div>
+<div class="flex-1">
+<p class="font-task-item text-task-item text-on-surface">Team sync: Design system updates</p>
+</div>
+<button class="opacity-0 group-hover:opacity-100 p-1 hover:text-primary transition-all">
+<span class="material-symbols-outlined text-[20px]">star</span>
+</button>
+</div>
+<!-- Task 4: Completed -->
+<div class="group flex items-center gap-4 p-4 bg-white/60 rounded-xl border border-transparent shadow-none opacity-60 transition-all duration-200">
+<div class="relative flex items-center justify-center">
+<input checked="" class="task-checkbox opacity-0 absolute h-6 w-6 cursor-pointer z-10" type="checkbox">
+<div class="checkbox-custom h-6 w-6 rounded-full border-2 border-primary bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px] text-white">check</span>
+</div>
+</div>
+<div class="flex-1">
+<p class="font-task-item text-task-item text-on-surface line-through">Check email for morning updates</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Task Detail Entry Mode (Sticky Bottom) -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 w-full max-w-4xl px-4 z-40">
+<div class="bg-white rounded-2xl shadow-2xl border border-outline-variant/30 overflow-hidden glass-panel">
+<!-- Quick-add Input Area -->
+<div class="p-4 flex items-start gap-4">
+<span class="material-symbols-outlined text-primary mt-1">add_circle</span>
+<div class="flex-1 space-y-3">
+<textarea class="w-full bg-transparent border-none p-0 focus:ring-0 font-task-item text-task-item resize-none" placeholder="Edit task details..." rows="1">Research competitive analysis for Q4</textarea>
+<!-- Detailed Entry Toolbar -->
+<div class="flex items-center justify-between border-t border-border-subtle-light pt-3">
+<div class="flex items-center gap-2">
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-lg hover:bg-surface-variant transition-colors text-on-surface-variant group">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary">event</span>
+<span class="text-[13px] font-medium">Add Date</span>
+</button>
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-lg hover:bg-surface-variant transition-colors text-on-surface-variant group">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary">notifications_active</span>
+<span class="text-[13px] font-medium">Remind Me</span>
+</button>
+<button class="flex items-center gap-1 px-3 py-1.5 rounded-lg hover:bg-surface-variant transition-colors text-on-surface-variant group">
+<span class="material-symbols-outlined text-[20px] group-hover:text-primary">repeat</span>
+<span class="text-[13px] font-medium">Repeat</span>
+</button>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-4 py-2 text-on-surface-variant font-medium text-[14px] hover:bg-surface-variant rounded-lg transition-colors">Cancel</button>
+<button class="px-6 py-2 bg-primary text-white font-semibold text-[14px] rounded-lg shadow-md hover:bg-primary/90 transition-all active:scale-95">Save</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Right Detail Panel (Sliding In) -->
+<aside class="fixed right-0 top-0 h-full w-detail-panel-width bg-white/90 border-l border-border-subtle-light z-40 transform transition-transform duration-500 ease-out translate-x-0 glass-panel shadow-2xl">
+<div class="h-full flex flex-col p-8">
+<div class="flex items-center justify-between mb-8">
+<h3 class="font-headline-md text-headline-md text-on-surface">Task Details</h3>
+<button class="p-2 rounded-full hover:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="space-y-8 overflow-y-auto pr-2">
+<!-- Title Section -->
+<div class="space-y-2">
+<div class="flex items-center gap-4">
+<div class="h-6 w-6 rounded-full border-2 border-primary flex items-center justify-center shrink-0"></div>
+<h4 class="font-body-lg text-body-lg font-semibold text-on-surface">Research competitive analysis for Q4</h4>
+</div>
+</div>
+<!-- Metadata Grid -->
+<div class="space-y-4">
+<div class="flex items-center gap-4 text-on-surface-variant group cursor-pointer hover:bg-surface-variant/30 p-2 rounded-lg -ml-2 transition-all">
+<span class="material-symbols-outlined">sunny</span>
+<span class="text-body-md">Added to My Day</span>
+</div>
+<div class="flex items-center gap-4 text-primary group cursor-pointer hover:bg-primary-container/10 p-2 rounded-lg -ml-2 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+<span class="text-body-md font-medium">Remind me at 2:00 PM</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant group cursor-pointer hover:bg-surface-variant/30 p-2 rounded-lg -ml-2 transition-all">
+<span class="material-symbols-outlined">calendar_month</span>
+<span class="text-body-md">Due Today</span>
+</div>
+<div class="flex items-center gap-4 text-on-surface-variant group cursor-pointer hover:bg-surface-variant/30 p-2 rounded-lg -ml-2 transition-all">
+<span class="material-symbols-outlined">repeat</span>
+<span class="text-body-md">Repeat</span>
+</div>
+</div>
+<!-- Steps Section -->
+<div class="space-y-4">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Sub-tasks</p>
+<div class="space-y-2">
+<div class="flex items-center gap-3 p-2 border-b border-border-subtle-light group">
+<span class="material-symbols-outlined text-[18px] text-outline">circle</span>
+<span class="text-[14px]">Identify top 3 competitors</span>
+<span class="material-symbols-outlined text-[16px] text-outline ml-auto opacity-0 group-hover:opacity-100 cursor-pointer">close</span>
+</div>
+<div class="flex items-center gap-3 p-2 border-b border-border-subtle-light group">
+<span class="material-symbols-outlined text-[18px] text-outline">circle</span>
+<span class="text-[14px]">Download latest market report</span>
+<span class="material-symbols-outlined text-[16px] text-outline ml-auto opacity-0 group-hover:opacity-100 cursor-pointer">close</span>
+</div>
+<button class="flex items-center gap-3 p-2 text-primary text-[14px] font-medium hover:underline">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                                Next step
+                            </button>
+</div>
+</div>
+<!-- Notes Section -->
+<div class="space-y-4">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Notes</p>
+<div class="bg-surface-variant/20 p-4 rounded-xl border border-border-subtle-light">
+<textarea class="w-full bg-transparent border-none p-0 focus:ring-0 text-[14px] text-on-surface leading-relaxed resize-none h-32" placeholder="Add a note...">Focusing on the SaaS sector. Specifically looking at pricing models and customer acquisition strategies used in the European market during the last quarter.</textarea>
+</div>
+</div>
+</div>
+<!-- Footer Info -->
+<div class="mt-auto pt-6 flex items-center justify-between text-[11px] text-on-surface-variant/60">
+<span>Created 2 hours ago</span>
+<button class="hover:text-error transition-colors">
+<span class="material-symbols-outlined text-[20px]">delete</span>
+</button>
+</div>
+</div>
+</aside>
+</div>
+<!-- Micro-interaction effects -->
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Task check toggle effect
+            const checkboxes = document.querySelectorAll('.task-checkbox');
+            checkboxes.forEach(cb => {
+                cb.addEventListener('change', (e) => {
+                    const taskItem = e.target.closest('.group');
+                    if(e.target.checked) {
+                        taskItem.classList.add('opacity-60');
+                        taskItem.querySelector('.task-item-text')?.classList.add('line-through');
+                    } else {
+                        taskItem.classList.remove('opacity-60');
+                        taskItem.querySelector('.task-item-text')?.classList.remove('line-through');
+                    }
+                });
+            });
+        });
+    </script>
+</body></html>

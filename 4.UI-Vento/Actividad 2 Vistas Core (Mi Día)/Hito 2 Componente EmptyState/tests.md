@@ -1,6 +1,14 @@
-# Tests: Componente EmptyState (Hito 4.2.2)
+# Tests: EmptyState Component & Vento Layout (Hito 4.2.2)
 
 ## Estrategia de Pruebas
-- [ ] **Visual Validation:** Verificar que el componente se renderiza centrado y con el espaciado correcto.
-- [ ] **Interaction Test:** Confirmar que el botón de acción ejecuta correctamente el callback `onAction`.
-- [ ] **Snapshot/Style:** Asegurar mediante tests visuales o inspección que aplica las clases `rounded-vento-md` y usa la paleta correcta.
+
+### Pruebas de Integración (UI/Visual)
+- [ ] **Sidebar Persistence**: Confirmar que el `SideNavBar` es visible en desktop y oculto en mobile.
+- [ ] **Bento Grid Integrity**: Verificar mediante pruebas de snapshot que la cuadrícula mantiene la estructura de 4x6 columnas/filas.
+- [ ] **Task Input Expansion**: Validar que el footer de input de tareas expande el toolbar de metadatos al hacer focus.
+
+### Pruebas de Navegación
+- [ ] **Main Navigation**: Confirmar que cada enlace del `SideNavBar` redirige a la ruta correcta.
+
+### Pruebas de Estilo (Vento)
+- [ ] **Glassmorphism Validation**: Verificar que `backdrop-blur-vento` se aplica correctamente a los paneles.

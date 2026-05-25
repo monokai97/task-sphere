@@ -5,16 +5,29 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --radius: 0.5rem;
+    --foreground: 240 10% 3.9%;
+    --surface: 0 0% 100%;
+    --panel: 240 5% 96%;
+    --highlight: 221 83% 53%;
+    --radius: 0.625rem;
   }
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --surface: 240 10% 3.9%;
+    --panel: 240 4% 16%;
+    --highlight: 217 91% 60%;
+  }
+}
+
+@layer utilities {
+  .backdrop-blur-vento {
+    backdrop-filter: blur(12px);
+    background-color: hsl(var(--surface) / 0.7);
   }
 }
 
 body {
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
+  @apply bg-background text-foreground;
+  font-family: var(--font-geist-sans);
 }

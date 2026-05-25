@@ -1,0 +1,333 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang2058{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset1 Segoe UI Symbol;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang10 ---\par
+title: Combobox\par
+description: Autocomplete input with a list of suggestions.\par
+base: radix\par
+component: true\par
+links:\par
+  doc: {{\field{\*\fldinst{HYPERLINK https://base-ui.com/react/components/combobox }}{\fldrslt{https://base-ui.com/react/components/combobox\ul0\cf0}}}}\f0\fs22\par
+  api: {{\field{\*\fldinst{HYPERLINK https://base-ui.com/react/components/combobox#api-reference }}{\fldrslt{https://base-ui.com/react/components/combobox#api-reference\ul0\cf0}}}}\f0\fs22\par
+---\par
+\par
+<ComponentPreview\par
+  styleName="base-nova"\par
+  name="combobox-demo"\par
+  description="A combobox with a list of frameworks."\par
+/>\par
+\par
+## Installation\par
+\par
+<CodeTabs>\par
+\par
+<TabsList>\par
+  <TabsTrigger value="cli">Command</TabsTrigger>\par
+  <TabsTrigger value="manual">Manual</TabsTrigger>\par
+</TabsList>\par
+<TabsContent value="cli">\par
+\par
+```bash\par
+npx shadcn@latest add combobox\par
+```\par
+\par
+</TabsContent>\par
+<TabsContent value="manual">\par
+\par
+<Steps className="mb-0 pt-2">\par
+\par
+<Step>Install the following dependencies:</Step>\par
+\par
+```bash\par
+npm install @base-ui/react\par
+```\par
+\par
+<Step>Copy and paste the following code into your project.</Step>\par
+\par
+<ComponentSource\par
+  name="combobox"\par
+  title="components/ui/combobox.tsx"\par
+  styleName="base-nova"\par
+/>\par
+\par
+<Step>Update the import paths to match your project setup.</Step>\par
+\par
+</Steps>\par
+\par
+</TabsContent>\par
+\par
+</CodeTabs>\par
+\par
+## Usage\par
+\par
+```tsx showLineNumbers\par
+import \{\par
+  Combobox,\par
+  ComboboxContent,\par
+  ComboboxEmpty,\par
+  ComboboxInput,\par
+  ComboboxItem,\par
+  ComboboxList,\par
+\} from "@/components/ui/combobox"\par
+```\par
+\par
+```tsx showLineNumbers\par
+const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"]\par
+\par
+export function ExampleCombobox() \{\par
+  return (\par
+    <Combobox items=\{frameworks\}>\par
+      <ComboboxInput placeholder="Select a framework" />\par
+      <ComboboxContent>\par
+        <ComboboxEmpty>No items found.</ComboboxEmpty>\par
+        <ComboboxList>\par
+          \{(item) => (\par
+            <ComboboxItem key=\{item\} value=\{item\}>\par
+              \{item\}\par
+            </ComboboxItem>\par
+          )\}\par
+        </ComboboxList>\par
+      </ComboboxContent>\par
+    </Combobox>\par
+  )\par
+\}\par
+```\par
+\par
+## Composition\par
+\par
+### Simple\par
+\par
+A single-line input and a flat list (see [Basic](#basic)).\par
+\par
+```text\par
+Combobox\par
+\f1\u9500?\u9472?\u9472?\f0  ComboboxInput\par
+\f1\u9492?\u9472?\u9472?\f0  ComboboxContent\par
+    \f1\u9500?\u9472?\u9472?\f0  ComboboxEmpty\par
+    \f1\u9492?\u9472?\u9472?\f0  ComboboxList\par
+        \f1\u9500?\u9472?\u9472?\f0  ComboboxItem\par
+        \f1\u9492?\u9472?\u9472?\f0  ComboboxItem\par
+```\par
+\par
+### With chips\par
+\par
+Multi-select with `multiple`, chips, and a chips input (see [Multiple](#multiple)).\par
+\par
+```text\par
+Combobox\par
+\f1\u9500?\u9472?\u9472?\f0  ComboboxChips\par
+\f1\u9474?\f0    \f1\u9500?\u9472?\u9472?\f0  ComboboxValue\par
+\f1\u9474?\f0    \f1\u9474?\f0    \f1\u9492?\u9472?\u9472?\f0  ComboboxChip\par
+\f1\u9474?\f0    \f1\u9492?\u9472?\u9472?\f0  ComboboxChipsInput\par
+\f1\u9492?\u9472?\u9472?\f0  ComboboxContent\par
+    \f1\u9500?\u9472?\u9472?\f0  ComboboxEmpty\par
+    \f1\u9492?\u9472?\u9472?\f0  ComboboxList\par
+        \f1\u9500?\u9472?\u9472?\f0  ComboboxItem\par
+        \f1\u9492?\u9472?\u9472?\f0  ComboboxItem\par
+```\par
+\par
+### With groups and collection\par
+\par
+Nested items per group using `ComboboxCollection` inside each `ComboboxGroup`, with a separator between groups (see [Groups](#groups)).\par
+\par
+```text\par
+Combobox\par
+\f1\u9500?\u9472?\u9472?\f0  ComboboxInput\par
+\f1\u9492?\u9472?\u9472?\f0  ComboboxContent\par
+    \f1\u9500?\u9472?\u9472?\f0  ComboboxEmpty\par
+    \f1\u9492?\u9472?\u9472?\f0  ComboboxList\par
+        \f1\u9500?\u9472?\u9472?\f0  ComboboxGroup\par
+        \f1\u9474?\f0    \f1\u9500?\u9472?\u9472?\f0  ComboboxLabel\par
+        \f1\u9474?\f0    \f1\u9492?\u9472?\u9472?\f0  ComboboxCollection\par
+        \f1\u9474?\f0        \f1\u9500?\u9472?\u9472?\f0  ComboboxItem\par
+        \f1\u9474?\f0        \f1\u9492?\u9472?\u9472?\f0  ComboboxItem\par
+        \f1\u9500?\u9472?\u9472?\f0  ComboboxSeparator\par
+        \f1\u9492?\u9472?\u9472?\f0  ComboboxGroup\par
+            \f1\u9500?\u9472?\u9472?\f0  ComboboxLabel\par
+            \f1\u9492?\u9472?\u9472?\f0  ComboboxCollection\par
+                \f1\u9500?\u9472?\u9472?\f0  ComboboxItem\par
+                \f1\u9492?\u9472?\u9472?\f0  ComboboxItem\par
+```\par
+\par
+## Custom Items\par
+\par
+Use `itemToStringValue` when your items are objects.\par
+\par
+```tsx showLineNumbers\par
+import * as React from "react"\par
+\par
+import \{\par
+  Combobox,\par
+  ComboboxContent,\par
+  ComboboxEmpty,\par
+  ComboboxInput,\par
+  ComboboxItem,\par
+  ComboboxList,\par
+\} from "@/components/ui/combobox"\par
+\par
+type Framework = \{\par
+  label: string\par
+  value: string\par
+\}\par
+\par
+const frameworks: Framework[] = [\par
+  \{ label: "Next.js", value: "next" \},\par
+  \{ label: "SvelteKit", value: "sveltekit" \},\par
+  \{ label: "Nuxt", value: "nuxt" \},\par
+]\par
+\par
+export function ExampleComboboxCustomItems() \{\par
+  return (\par
+    <Combobox\par
+      items=\{frameworks\}\par
+      itemToStringValue=\{(framework) => framework.label\}\par
+    >\par
+      <ComboboxInput placeholder="Select a framework" />\par
+      <ComboboxContent>\par
+        <ComboboxEmpty>No items found.</ComboboxEmpty>\par
+        <ComboboxList>\par
+          \{(framework) => (\par
+            <ComboboxItem key=\{framework.value\} value=\{framework\}>\par
+              \{framework.label\}\par
+            </ComboboxItem>\par
+          )\}\par
+        </ComboboxList>\par
+      </ComboboxContent>\par
+    </Combobox>\par
+  )\par
+\}\par
+```\par
+\par
+## Multiple Selection\par
+\par
+Use `multiple` with chips for multi-select behavior.\par
+\par
+```tsx showLineNumbers\par
+import * as React from "react"\par
+\par
+import \{\par
+  Combobox,\par
+  ComboboxChip,\par
+  ComboboxChips,\par
+  ComboboxChipsInput,\par
+  ComboboxContent,\par
+  ComboboxEmpty,\par
+  ComboboxInput,\par
+  ComboboxItem,\par
+  ComboboxList,\par
+  ComboboxValue,\par
+\} from "@/components/ui/combobox"\par
+\par
+const frameworks = ["Next.js", "SvelteKit", "Nuxt.js", "Remix", "Astro"]\par
+\par
+export function ExampleComboboxMultiple() \{\par
+  const [value, setValue] = React.useState<string[]>([])\par
+\par
+  return (\par
+    <Combobox\par
+      items=\{frameworks\}\par
+      multiple\par
+      value=\{value\}\par
+      onValueChange=\{setValue\}\par
+    >\par
+      <ComboboxChips>\par
+        <ComboboxValue>\par
+          \{value.map((item) => (\par
+            <ComboboxChip key=\{item\}>\{item\}</ComboboxChip>\par
+          ))\}\par
+        </ComboboxValue>\par
+        <ComboboxChipsInput placeholder="Add framework" />\par
+      </ComboboxChips>\par
+      <ComboboxContent>\par
+        <ComboboxEmpty>No items found.</ComboboxEmpty>\par
+        <ComboboxList>\par
+          \{(item) => (\par
+            <ComboboxItem key=\{item\} value=\{item\}>\par
+              \{item\}\par
+            </ComboboxItem>\par
+          )\}\par
+        </ComboboxList>\par
+      </ComboboxContent>\par
+    </Combobox>\par
+  )\par
+\}\par
+```\par
+\par
+## Examples\par
+\par
+### Basic\par
+\par
+A simple combobox with a list of frameworks.\par
+\par
+<ComponentPreview styleName="base-nova" name="combobox-basic" />\par
+\par
+### Multiple\par
+\par
+A combobox with multiple selection using `multiple` and `ComboboxChips`.\par
+\par
+<ComponentPreview styleName="base-nova" name="combobox-multiple" />\par
+\par
+### Clear Button\par
+\par
+Use the `showClear` prop to show a clear button.\par
+\par
+<ComponentPreview styleName="base-nova" name="combobox-clear" />\par
+\par
+### Groups\par
+\par
+Use `ComboboxGroup` and `ComboboxSeparator` to group items.\par
+\par
+<ComponentPreview styleName="base-nova" name="combobox-groups" />\par
+\par
+### Custom Items\par
+\par
+You can render a custom component inside `ComboboxItem`.\par
+\par
+<ComponentPreview styleName="base-nova" name="combobox-custom" />\par
+\par
+### Invalid\par
+\par
+Use the `aria-invalid` prop to make the combobox invalid.\par
+\par
+<ComponentPreview styleName="base-nova" name="combobox-invalid" />\par
+\par
+### Disabled\par
+\par
+Use the `disabled` prop to disable the combobox.\par
+\par
+<ComponentPreview styleName="base-nova" name="combobox-disabled" />\par
+\par
+### Auto Highlight\par
+\par
+Use the `autoHighlight` prop to automatically highlight the first item on filter.\par
+\par
+<ComponentPreview styleName="base-nova" name="combobox-auto-highlight" />\par
+\par
+### Popup\par
+\par
+You can trigger the combobox from a button or any other component by using the `render` prop. Move the `ComboboxInput` inside the `ComboboxContent`.\par
+\par
+<ComponentPreview styleName="base-nova" name="combobox-popup" />\par
+\par
+### Input Group\par
+\par
+You can add an addon to the combobox by using the `InputGroupAddon` component inside the `ComboboxInput`.\par
+\par
+<ComponentPreview styleName="radix-nova" name="combobox-input-group" />\par
+\par
+## RTL\par
+\par
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="combobox-rtl"\par
+  direction="rtl"\par
+  align="start"\par
+/>\par
+\par
+## API Reference\par
+\par
+See the [Base UI](https://base-ui.com/react/components/combobox#api-reference) documentation for more information.\par
+}
+ 

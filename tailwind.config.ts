@@ -8,7 +8,20 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-geist-sans)", "sans-serif"],
+        mono: ["var(--font-geist-mono)", "monospace"],
+      },
+      spacing: {
+        "vento-8": "32px",
+        "vento-16": "64px",
+      },
       colors: {
+        vento: {
+          surface: "hsl(var(--surface))",
+          panel: "hsl(var(--panel))",
+          highlight: "hsl(var(--highlight))",
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
       },

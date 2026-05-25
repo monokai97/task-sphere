@@ -1,0 +1,328 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang2058{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset1 Segoe UI Symbol;}}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang10 ---\par
+title: Input Group\par
+description: Add addons, buttons, and helper content to inputs.\par
+base: radix\par
+component: true\par
+---\par
+\par
+import \{ IconInfoCircle \} from "@tabler/icons-react"\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="input-group-demo"\par
+  previewClassName="h-[26rem]"\par
+/>\par
+\par
+## Installation\par
+\par
+<CodeTabs>\par
+\par
+<TabsList>\par
+  <TabsTrigger value="cli">Command</TabsTrigger>\par
+  <TabsTrigger value="manual">Manual</TabsTrigger>\par
+</TabsList>\par
+<TabsContent value="cli">\par
+\par
+```bash\par
+npx shadcn@latest add input-group\par
+```\par
+\par
+</TabsContent>\par
+\par
+<TabsContent value="manual">\par
+\par
+<Steps className="mb-0 pt-2">\par
+\par
+<Step>Copy and paste the following code into your project.</Step>\par
+\par
+<ComponentSource\par
+  name="input-group"\par
+  title="components/ui/input-group.tsx"\par
+  styleName="radix-nova"\par
+/>\par
+\par
+<Step>Update the import paths to match your project setup.</Step>\par
+\par
+</Steps>\par
+\par
+</TabsContent>\par
+\par
+</CodeTabs>\par
+\par
+## Usage\par
+\par
+```tsx showLineNumbers\par
+import \{\par
+  InputGroup,\par
+  InputGroupAddon,\par
+  InputGroupButton,\par
+  InputGroupInput,\par
+  InputGroupText,\par
+  InputGroupTextarea,\par
+\} from "@/components/ui/input-group"\par
+```\par
+\par
+```tsx showLineNumbers\par
+<InputGroup>\par
+  <InputGroupInput placeholder="Search..." />\par
+  <InputGroupAddon>\par
+    <SearchIcon />\par
+  </InputGroupAddon>\par
+</InputGroup>\par
+```\par
+\par
+## Composition\par
+\par
+Use the following composition to build an `InputGroup`:\par
+\par
+```text\par
+InputGroup\par
+\f1\u9500?\u9472?\u9472?\f0  InputGroupInput or InputGroupTextarea\par
+\f1\u9500?\u9472?\u9472?\f0  InputGroupAddon\par
+\f1\u9500?\u9472?\u9472?\f0  InputGroupButton\par
+\f1\u9492?\u9472?\u9472?\f0  InputGroupText\par
+```\par
+\par
+## Align\par
+\par
+Use the `align` prop on `InputGroupAddon` to position the addon relative to the input.\par
+\par
+<Callout>\par
+  For proper focus management, `InputGroupAddon` should always be placed after\par
+  `InputGroupInput` or `InputGroupTextarea` in the DOM. Use the `align` prop to\par
+  visually position the addon.\par
+</Callout>\par
+\par
+### inline-start\par
+\par
+Use `align="inline-start"` to position the addon at the start of the input. This is the default.\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="input-group-inline-start"\par
+  previewClassName="h-48"\par
+/>\par
+\par
+### inline-end\par
+\par
+Use `align="inline-end"` to position the addon at the end of the input.\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="input-group-inline-end"\par
+  previewClassName="h-48"\par
+/>\par
+\par
+### block-start\par
+\par
+Use `align="block-start"` to position the addon above the input.\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="input-group-block-start"\par
+  previewClassName="h-96"\par
+/>\par
+\par
+### block-end\par
+\par
+Use `align="block-end"` to position the addon below the input.\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="input-group-block-end"\par
+  previewClassName="h-[26rem]"\par
+/>\par
+\par
+## Examples\par
+\par
+### Icon\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="input-group-icon"\par
+  previewClassName="h-80"\par
+/>\par
+\par
+### Text\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="input-group-text"\par
+  previewClassName="h-80"\par
+/>\par
+\par
+### Button\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="input-group-button"\par
+  previewClassName="h-72"\par
+/>\par
+\par
+### Kbd\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="input-group-kbd"\par
+  previewClassName="h-40"\par
+/>\par
+\par
+### Dropdown\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="input-group-dropdown"\par
+  previewClassName="h-56"\par
+/>\par
+\par
+### Spinner\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="input-group-spinner"\par
+  previewClassName="h-80"\par
+/>\par
+\par
+### Textarea\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="input-group-textarea"\par
+  previewClassName="h-96"\par
+/>\par
+\par
+### Custom Input\par
+\par
+Add the `data-slot="input-group-control"` attribute to your custom input for automatic focus state handling.\par
+\par
+Here's an example of a custom resizable textarea from a third-party library.\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="input-group-custom"\par
+  previewClassName="h-56"\par
+/>\par
+\par
+## RTL\par
+\par
+To enable RTL support in shadcn/ui, see the [RTL configuration guide](/docs/rtl).\par
+\par
+<ComponentPreview\par
+  styleName="radix-nova"\par
+  name="input-group-rtl"\par
+  direction="rtl"\par
+  previewClassName="h-[30rem]"\par
+/>\par
+\par
+## API Reference\par
+\par
+### InputGroup\par
+\par
+The main component that wraps inputs and addons.\par
+\par
+| Prop        | Type     | Default |\par
+| ----------- | -------- | ------- |\par
+| `className` | `string` |         |\par
+\par
+```tsx\par
+<InputGroup>\par
+  <InputGroupInput />\par
+  <InputGroupAddon />\par
+</InputGroup>\par
+```\par
+\par
+### InputGroupAddon\par
+\par
+Displays icons, text, buttons, or other content alongside inputs.\par
+\par
+<Callout icon=\{<IconInfoCircle />\} title="Focus Navigation">\par
+  For proper focus navigation, the `InputGroupAddon` component should be placed\par
+  after the input. Set the `align` prop to position the addon.\par
+</Callout>\par
+\par
+| Prop        | Type                                                             | Default          |\par
+| ----------- | ---------------------------------------------------------------- | ---------------- |\par
+| `align`     | `"inline-start" \\| "inline-end" \\| "block-start" \\| "block-end"` | `"inline-start"` |\par
+| `className` | `string`                                                         |                  |\par
+\par
+```tsx\par
+<InputGroupAddon align="inline-end">\par
+  <SearchIcon />\par
+</InputGroupAddon>\par
+```\par
+\par
+**For `<InputGroupInput />`, use the `inline-start` or `inline-end` alignment. For `<InputGroupTextarea />`, use the `block-start` or `block-end` alignment.**\par
+\par
+The `InputGroupAddon` component can have multiple `InputGroupButton` components and icons.\par
+\par
+```tsx\par
+<InputGroupAddon>\par
+  <InputGroupButton>Button</InputGroupButton>\par
+  <InputGroupButton>Button</InputGroupButton>\par
+</InputGroupAddon>\par
+```\par
+\par
+### InputGroupButton\par
+\par
+Displays buttons within input groups.\par
+\par
+| Prop        | Type                                                                          | Default   |\par
+| ----------- | ----------------------------------------------------------------------------- | --------- |\par
+| `size`      | `"xs" \\| "icon-xs" \\| "sm" \\| "icon-sm"`                                      | `"xs"`    |\par
+| `variant`   | `"default" \\| "destructive" \\| "outline" \\| "secondary" \\| "ghost" \\| "link"` | `"ghost"` |\par
+| `className` | `string`                                                                      |           |\par
+\par
+```tsx\par
+<InputGroupButton>Button</InputGroupButton>\par
+<InputGroupButton size="icon-xs" aria-label="Copy">\par
+  <CopyIcon />\par
+</InputGroupButton>\par
+```\par
+\par
+### InputGroupInput\par
+\par
+Replacement for `<Input />` when building input groups. This component has the input group styles pre-applied and uses the unified `data-slot="input-group-control"` for focus state handling.\par
+\par
+| Prop        | Type     | Default |\par
+| ----------- | -------- | ------- |\par
+| `className` | `string` |         |\par
+\par
+All other props are passed through to the underlying `<Input />` component.\par
+\par
+```tsx\par
+<InputGroup>\par
+  <InputGroupInput placeholder="Enter text..." />\par
+  <InputGroupAddon>\par
+    <SearchIcon />\par
+  </InputGroupAddon>\par
+</InputGroup>\par
+```\par
+\par
+### InputGroupTextarea\par
+\par
+Replacement for `<Textarea />` when building input groups. This component has the textarea group styles pre-applied and uses the unified `data-slot="input-group-control"` for focus state handling.\par
+\par
+| Prop        | Type     | Default |\par
+| ----------- | -------- | ------- |\par
+| `className` | `string` |         |\par
+\par
+All other props are passed through to the underlying `<Textarea />` component.\par
+\par
+```tsx\par
+<InputGroup>\par
+  <InputGroupTextarea placeholder="Enter message..." />\par
+  <InputGroupAddon align="block-end">\par
+    <InputGroupButton>Send</InputGroupButton>\par
+  </InputGroupAddon>\par
+</InputGroup>\par
+```\par
+\par
+## Changelog\par
+\par
+### 2025-10-06 `InputGroup`\par
+\par
+Add the `min-w-0` class to the `InputGroup` component. See [diff](https://github.com/shadcn-ui/ui/pull/8341/files#diff-0e2ee95d0050ca4c5d82339df86c54e14a6739dc4638fdda0eec8f73aebc2da9).\par
+}
+ 

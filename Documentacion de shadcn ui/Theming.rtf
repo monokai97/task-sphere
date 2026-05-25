@@ -1,0 +1,308 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang2058{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang10 ---\par
+title: Theming\par
+description: Using CSS variables and theme tokens.\par
+---\par
+\par
+<Callout>\par
+\par
+Want to build your theme visually? Use [shadcn/create](/create) to preview colors, radius, fonts, and icons, then generate a preset for your project.\par
+\par
+</Callout>\par
+\par
+We use and recommend CSS variables for theming.\par
+\par
+This gives you semantic theme tokens like `background`, `foreground`, and `primary` that components use by default. Override those tokens in your CSS to change the look of your app without rewriting component classes.\par
+\par
+```tsx /bg-background/ /text-foreground/\par
+<div className="bg-background text-foreground" />\par
+```\par
+\par
+To use CSS variables for theming, set `tailwind.cssVariables` to `true` in your `components.json` file. This is the default.\par
+\par
+```json \{8\} title="components.json" showLineNumbers\par
+\{\par
+  "style": "base-nova",\par
+  "rsc": true,\par
+  "tailwind": \{\par
+    "config": "",\par
+    "css": "app/globals.css",\par
+    "baseColor": "neutral",\par
+    "cssVariables": true\par
+  \}\par
+\}\par
+```\par
+\par
+Tailwind maps these tokens into utilities like `bg-background`, `text-foreground`, `border-border`, and `ring-ring`.\par
+\par
+Dark mode works by overriding the same tokens inside a `.dark` selector. See the [dark mode docs](/docs/dark-mode/next) for adding a theme provider and toggling the `.dark` class.\par
+\par
+## Token Convention\par
+\par
+We use semantic background and foreground pairs. The base token controls the surface color and the `-foreground` token controls the text and icon color that sits on that surface.\par
+\par
+<Callout className="mt-4">\par
+\par
+The background suffix is omitted for the surface token. For example, `primary` pairs with `primary-foreground`.\par
+\par
+</Callout>\par
+\par
+Given the following CSS variables:\par
+\par
+```css\par
+--primary: oklch(0.205 0 0);\par
+--primary-foreground: oklch(0.985 0 0);\par
+```\par
+\par
+The `background` color of the following component will be `var(--primary)` and the `foreground` color will be `var(--primary-foreground)`.\par
+\par
+```tsx\par
+<div className="bg-primary text-primary-foreground">Hello</div>\par
+```\par
+\par
+## Theme Tokens\par
+\par
+These tokens live in your CSS file under `:root` and `.dark`.\par
+\par
+| Token                                            | What it controls                                       | Used by                                                                      |\par
+| ------------------------------------------------ | ------------------------------------------------------ | ---------------------------------------------------------------------------- |\par
+| `background` / `foreground`                      | The default app background and text color.             | The page shell, page sections, and default text.                             |\par
+| `card` / `card-foreground`                       | Elevated surfaces and the content inside them.         | `Card`, dashboard panels, settings panels.                                   |\par
+| `popover` / `popover-foreground`                 | Floating surfaces and the content inside them.         | `Popover`, `DropdownMenu`, `ContextMenu`, and other overlays.                |\par
+| `primary` / `primary-foreground`                 | High-emphasis actions and brand surfaces.              | Default `Button`, selected states, badges, and active accents.               |\par
+| `secondary` / `secondary-foreground`             | Lower-emphasis filled actions and supporting surfaces. | Secondary buttons, secondary badges, and supporting UI.                      |\par
+| `muted` / `muted-foreground`                     | Subtle surfaces and lower-emphasis content.            | Descriptions, placeholders, empty states, helper text, and subdued surfaces. |\par
+| `accent` / `accent-foreground`                   | Interactive hover, focus, and active surfaces.         | Ghost buttons, menu highlight states, hovered rows, and selected items.      |\par
+| `destructive`                                    | Destructive actions and error emphasis.                | Destructive buttons, invalid states, and destructive menu items.             |\par
+| `border`                                         | Default borders and separators.                        | Cards, menus, tables, separators, and layout dividers.                       |\par
+| `input`                                          | Form control borders and input surface treatment.      | `Input`, `Textarea`, `Select`, and outline-style controls.                   |\par
+| `ring`                                           | Focus rings and outlines.                              | Buttons, inputs, checkboxes, menus, and other focusable controls.            |\par
+| `chart-1` ... `chart-5`                          | The default chart palette.                             | Charts and chart-driven dashboard blocks.                                    |\par
+| `sidebar` / `sidebar-foreground`                 | The base sidebar surface and default sidebar text.     | The `Sidebar` container and its default content.                             |\par
+| `sidebar-primary` / `sidebar-primary-foreground` | High-emphasis actions inside the sidebar.              | Active items, icon tiles, badges, and sidebar CTAs.                          |\par
+| `sidebar-accent` / `sidebar-accent-foreground`   | Hover and selected states inside the sidebar.          | Sidebar menu hover states, open items, and interactive rows.                 |\par
+| `sidebar-border`                                 | Sidebar-specific borders and separators.               | Sidebar headers, groups, and internal dividers.                              |\par
+| `sidebar-ring`                                   | Sidebar-specific focus rings.                          | Focused controls inside the sidebar.                                         |\par
+| `radius`                                         | The base corner radius scale.                          | Cards, inputs, buttons, popovers, and the derived `radius-*` tokens.         |\par
+\par
+<Callout className="mt-4">\par
+\par
+The chart tokens are covered in more detail in the [Chart theming docs](/docs/components/chart#theming).\par
+\par
+</Callout>\par
+\par
+## Radius Scale\par
+\par
+`--radius` is the base radius token for your theme.\par
+\par
+We derive a small radius scale from it so components can use consistent corner sizes while still sharing a single source of truth.\par
+\par
+```css title="app/globals.css" showLineNumbers\par
+@theme inline \{\par
+  --radius-sm: calc(var(--radius) * 0.6);\par
+  --radius-md: calc(var(--radius) * 0.8);\par
+  --radius-lg: var(--radius);\par
+  --radius-xl: calc(var(--radius) * 1.4);\par
+  --radius-2xl: calc(var(--radius) * 1.8);\par
+  --radius-3xl: calc(var(--radius) * 2.2);\par
+  --radius-4xl: calc(var(--radius) * 2.6);\par
+\}\par
+```\par
+\par
+This means:\par
+\par
+- `radius-lg` is the base value.\par
+- Smaller radii scale down from `--radius`.\par
+- Larger radii scale up from `--radius`.\par
+- Changing `--radius` updates the entire radius scale.\par
+\par
+## Adding New Tokens\par
+\par
+To add a new token, define it under `:root` and `.dark`, then expose it to Tailwind with `@theme inline`.\par
+\par
+```css title="app/globals.css" showLineNumbers\par
+:root \{\par
+  --warning: oklch(0.84 0.16 84);\par
+  --warning-foreground: oklch(0.28 0.07 46);\par
+\}\par
+\par
+.dark \{\par
+  --warning: oklch(0.41 0.11 46);\par
+  --warning-foreground: oklch(0.99 0.02 95);\par
+\}\par
+\par
+@theme inline \{\par
+  --color-warning: var(--warning);\par
+  --color-warning-foreground: var(--warning-foreground);\par
+\}\par
+```\par
+\par
+You can now use `bg-warning` and `text-warning-foreground` in your components.\par
+\par
+```tsx /bg-warning/ /text-warning-foreground/\par
+<div className="bg-warning text-warning-foreground" />\par
+```\par
+\par
+## Base Colors\par
+\par
+`tailwind.baseColor` controls the default token values generated for your project when you run `init` or use a preset.\par
+\par
+The available base colors are: **Neutral**, **Stone**, **Zinc**, **Mauve**, **Olive**, **Mist**, and **Taupe**.\par
+\par
+## Default Theme CSS\par
+\par
+The following is the full default `neutral` theme scaffold. Copy it into your global CSS file and adjust the tokens as needed.\par
+\par
+<CodeCollapsibleWrapper>\par
+\par
+```css showLineNumbers title="app/globals.css"\par
+@import "tailwindcss";\par
+@import "shadcn/tailwind.css";\par
+\par
+@custom-variant dark (&:is(.dark *));\par
+\par
+@theme inline \{\par
+  --color-background: var(--background);\par
+  --color-foreground: var(--foreground);\par
+  --color-card: var(--card);\par
+  --color-card-foreground: var(--card-foreground);\par
+  --color-popover: var(--popover);\par
+  --color-popover-foreground: var(--popover-foreground);\par
+  --color-primary: var(--primary);\par
+  --color-primary-foreground: var(--primary-foreground);\par
+  --color-secondary: var(--secondary);\par
+  --color-secondary-foreground: var(--secondary-foreground);\par
+  --color-muted: var(--muted);\par
+  --color-muted-foreground: var(--muted-foreground);\par
+  --color-accent: var(--accent);\par
+  --color-accent-foreground: var(--accent-foreground);\par
+  --color-destructive: var(--destructive);\par
+  --color-border: var(--border);\par
+  --color-input: var(--input);\par
+  --color-ring: var(--ring);\par
+  --color-chart-1: var(--chart-1);\par
+  --color-chart-2: var(--chart-2);\par
+  --color-chart-3: var(--chart-3);\par
+  --color-chart-4: var(--chart-4);\par
+  --color-chart-5: var(--chart-5);\par
+  --color-sidebar: var(--sidebar);\par
+  --color-sidebar-foreground: var(--sidebar-foreground);\par
+  --color-sidebar-primary: var(--sidebar-primary);\par
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);\par
+  --color-sidebar-accent: var(--sidebar-accent);\par
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);\par
+  --color-sidebar-border: var(--sidebar-border);\par
+  --color-sidebar-ring: var(--sidebar-ring);\par
+  --radius-sm: calc(var(--radius) * 0.6);\par
+  --radius-md: calc(var(--radius) * 0.8);\par
+  --radius-lg: var(--radius);\par
+  --radius-xl: calc(var(--radius) * 1.4);\par
+  --radius-2xl: calc(var(--radius) * 1.8);\par
+  --radius-3xl: calc(var(--radius) * 2.2);\par
+  --radius-4xl: calc(var(--radius) * 2.6);\par
+\}\par
+\par
+:root \{\par
+  --radius: 0.625rem;\par
+  --background: oklch(1 0 0);\par
+  --foreground: oklch(0.145 0 0);\par
+  --card: oklch(1 0 0);\par
+  --card-foreground: oklch(0.145 0 0);\par
+  --popover: oklch(1 0 0);\par
+  --popover-foreground: oklch(0.145 0 0);\par
+  --primary: oklch(0.205 0 0);\par
+  --primary-foreground: oklch(0.985 0 0);\par
+  --secondary: oklch(0.97 0 0);\par
+  --secondary-foreground: oklch(0.205 0 0);\par
+  --muted: oklch(0.97 0 0);\par
+  --muted-foreground: oklch(0.556 0 0);\par
+  --accent: oklch(0.97 0 0);\par
+  --accent-foreground: oklch(0.205 0 0);\par
+  --destructive: oklch(0.577 0.245 27.325);\par
+  --border: oklch(0.922 0 0);\par
+  --input: oklch(0.922 0 0);\par
+  --ring: oklch(0.708 0 0);\par
+  --chart-1: oklch(0.646 0.222 41.116);\par
+  --chart-2: oklch(0.6 0.118 184.704);\par
+  --chart-3: oklch(0.398 0.07 227.392);\par
+  --chart-4: oklch(0.828 0.189 84.429);\par
+  --chart-5: oklch(0.769 0.188 70.08);\par
+  --sidebar: oklch(0.985 0 0);\par
+  --sidebar-foreground: oklch(0.145 0 0);\par
+  --sidebar-primary: oklch(0.205 0 0);\par
+  --sidebar-primary-foreground: oklch(0.985 0 0);\par
+  --sidebar-accent: oklch(0.97 0 0);\par
+  --sidebar-accent-foreground: oklch(0.205 0 0);\par
+  --sidebar-border: oklch(0.922 0 0);\par
+  --sidebar-ring: oklch(0.708 0 0);\par
+\}\par
+\par
+.dark \{\par
+  --background: oklch(0.145 0 0);\par
+  --foreground: oklch(0.985 0 0);\par
+  --card: oklch(0.205 0 0);\par
+  --card-foreground: oklch(0.985 0 0);\par
+  --popover: oklch(0.205 0 0);\par
+  --popover-foreground: oklch(0.985 0 0);\par
+  --primary: oklch(0.922 0 0);\par
+  --primary-foreground: oklch(0.205 0 0);\par
+  --secondary: oklch(0.269 0 0);\par
+  --secondary-foreground: oklch(0.985 0 0);\par
+  --muted: oklch(0.269 0 0);\par
+  --muted-foreground: oklch(0.708 0 0);\par
+  --accent: oklch(0.269 0 0);\par
+  --accent-foreground: oklch(0.985 0 0);\par
+  --destructive: oklch(0.704 0.191 22.216);\par
+  --border: oklch(1 0 0 / 10%);\par
+  --input: oklch(1 0 0 / 15%);\par
+  --ring: oklch(0.556 0 0);\par
+  --chart-1: oklch(0.488 0.243 264.376);\par
+  --chart-2: oklch(0.696 0.17 162.48);\par
+  --chart-3: oklch(0.769 0.188 70.08);\par
+  --chart-4: oklch(0.627 0.265 303.9);\par
+  --chart-5: oklch(0.645 0.246 16.439);\par
+  --sidebar: oklch(0.205 0 0);\par
+  --sidebar-foreground: oklch(0.985 0 0);\par
+  --sidebar-primary: oklch(0.488 0.243 264.376);\par
+  --sidebar-primary-foreground: oklch(0.985 0 0);\par
+  --sidebar-accent: oklch(0.269 0 0);\par
+  --sidebar-accent-foreground: oklch(0.985 0 0);\par
+  --sidebar-border: oklch(1 0 0 / 10%);\par
+  --sidebar-ring: oklch(0.556 0 0);\par
+\}\par
+\par
+@layer base \{\par
+  * \{\par
+    @apply border-border outline-ring/50;\par
+  \}\par
+\par
+  body \{\par
+    @apply bg-background text-foreground;\par
+  \}\par
+\}\par
+```\par
+\par
+</CodeCollapsibleWrapper>\par
+\par
+## Without CSS Variables\par
+\par
+If you do not want to use CSS variables, the CLI can generate components with inline Tailwind color utilities instead.\par
+\par
+```bash\par
+npx shadcn@latest init --no-css-variables\par
+```\par
+\par
+This sets `tailwind.cssVariables` to `false` in your `components.json` file.\par
+\par
+```tsx /bg-zinc-950/ /text-zinc-50/ /dark:bg-white/ /dark:text-zinc-950/\par
+<div className="bg-zinc-950 text-zinc-50 dark:bg-white dark:text-zinc-950" />\par
+```\par
+\par
+<Callout className="mt-4">\par
+\par
+This is an installation-time choice. To switch an existing project, delete and re-install your components.\par
+\par
+</Callout>\par
+}
+ 
